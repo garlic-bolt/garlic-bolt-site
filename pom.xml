@@ -23,7 +23,7 @@
   </dependencies>
 
   <build>
-    <finalName>ROOT</finalName>
+    <finalName>chanjetpay-wx</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
