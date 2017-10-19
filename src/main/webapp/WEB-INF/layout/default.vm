@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="copyright" content="chanjetpay.com"/>
+	<meta name="keywords" content="蒜苔，聚餐，美食，点菜，餐饮服务，扫码点餐，扫码预约，扫码排队，扫码结账"/>
+	<meta name="description" content="专注于移动web的智能餐饮服务平台"/>
+	<meta name="author" content="bao.li.net@hotmail.com"/>
+
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="bookmark" href="favicon.ico" type="image/x-icon"/>
+
+	<link rel="stylesheet" href="assets/pure/css/v1.0/pure-min.css">
+
+	<link rel="stylesheet" href="assets/pure/css/v1.0/base-min.css">
+
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="assets/pure/css/v1.0/grids-responsive-old-ie-min.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="assets/pure/css/v1.0/grids-responsive-min.css">
+	<!--<![endif]-->
+
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="assets/css/layouts/marketing-old-ie.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="assets/pure/css/layouts/marketing.css">
+	<!--<![endif]-->
+
+	<title>蒜苔网-智能社区服务平台</title>
+</head>
+<body>
+
+<div class="header">
+	<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+		<a class="pure-menu-heading" href="">蒜苔</a>
+
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">首页</a></li>
+			<li class="pure-menu-item"><a href="#" class="pure-menu-link">演示</a></li>
+			<li class="pure-menu-item"><a href="#" class="pure-menu-link">关于</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="splash-container">
+	<div class="splash">
+		<h1 class="splash-head">让生活变的智能简单</h1>
+		<p class="splash-subhead">
+			围绕社区周边, 打造营销、购物、餐饮等一体化生活服务平台
+		</p>
+		<p>
+			<a href="http://purecss.io" class="pure-button pure-button-primary">开启体验之旅</a>
+		</p>
+	</div>
+</div>
+
+<div class="content-wrapper">
+	$screen_content
+</div>
+
+
+</body>
+</html>

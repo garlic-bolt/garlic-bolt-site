@@ -1,0 +1,72 @@
+#set($layout="layout/blank.vm")
+
+#set($layout="layout/blank.vm")
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A layout example that shows off a responsive pricing table.">
+	<title>Pricing Table &ndash; Layout Examples &ndash; Pure</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+	<!--<![endif]-->
+
+
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="css/layouts/pricing-old-ie.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="assets/pure/css/layouts/pricing.css">
+	<!--<![endif]-->
+</head>
+<body>
+
+
+<div class="l-content">
+	<div class="pricing-tables pure-g">
+
+
+		<div class="pure-u-1 pure-u-md-1-1">
+			<div class="pricing-table pricing-table-biz pricing-table-selected">
+				<div class="pricing-table-header">
+					<h2>Small Business</h2>
+
+					<span class="pricing-table-price">
+                        $25 <span>per month</span>
+                    </span>
+				</div>
+
+				<ul class="pricing-table-list">
+					<li>Free setup</li>
+					<li>Use your own domain</li>
+					<li>Standard customer support</li>
+					<li>10GB file storage</li>
+					<li>5 databases</li>
+					<li>Unlimited bandwidth</li>
+				</ul>
+
+				<button class="button-choose pure-button">Choose</button>
+			</div>
+		</div>
+
+	</div> <!-- end pricing-tables -->
+</div> <!-- end l-content -->
+
+<div class="footer l-box">
+	<p>
+		<a href="#">Try now</a> for 14 days. No credit card required. Header image courtesy of <a href='http://unsplash.com/'>Unsplash</a>.
+	</p>
+</div>
+
+
+
+</body>
+</html>

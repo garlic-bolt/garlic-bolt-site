@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	
+   	<!-- 开启注解 ,需要如下两个类 -->
+	<context:annotation-config />
+<!--	<context:component-scan base-package="com.chanjetpay.wx.*" />-->
+
+	<!-- 扫描Controller -->
+	<context:component-scan base-package="com.chanjetpay.wx">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+
+	<context:property-placeholder location="classpath:app.properties" />
+
+	<!-- 开启aop -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 配置拦截器 -->
+	<!--<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/logoff"/>
+			<mvc:exclude-mapping path="/**/*.html"/>
+			<bean class="com.chanjetpay.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/logoff"/>
+			<mvc:exclude-mapping path="/**/*.html"/>
+			<bean class="com.chanjetpay.interceptor.MenuInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/account/*"/>
+			<mvc:mapping path="/channel/*"/>
+			<mvc:mapping path="/trading/*"/>
+			<mvc:mapping path="/public/*"/>
+			<mvc:mapping path="/user/*"/>
+			<bean class="com.chanjetpay.interceptor.PermissionInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>-->
+
+	<!-- 静态资源映射 -->
+	<mvc:resources location="/assets/" mapping="/assets/**"/>
+	<!--	<mvc:resources location="/.package/" mapping="/.package/**"/>-->
+	<mvc:default-servlet-handler/>
+
+	<mvc:annotation-driven />
+	<!-- 把标记了@Controller注解的类转换为bean
+	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	&lt;!&ndash; 避免IE执行AJAX时,返回JSON出现下载文件 &ndash;&gt;
+	&lt;!&ndash; Jackson 是Spring 自带的功能 &ndash;&gt;
+	<bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+				<value>application/xml;charset=UTF-8</value>
+				<value>text/html;charset=UTF-8</value>
+				<value>text/plain;charset=UTF-8</value>
+				<value>text/xml;charset=UTF-8</value>
+				<value>text/javascript;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<ref bean="stringHttpMessageConverter" />
+			<ref bean="mappingJackson2HttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>-->
+
+	<!-- Velocity引擎 -->
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/" />
+		<property name="configLocation" value="/WEB-INF/velocity.properties" />
+	</bean>
+
+	<!-- Velocity视图解析器 -->
+	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="cache" value="false" /><!--是否缓存模板 -->
+		<property name="order" value="1" />
+		<property name="prefix" value="velocity/" />
+		<property name="suffix" value=".vm" />
+
+		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" /><!-- toolbox配置文件路径 -->
+		<property name="dateToolAttribute" value="date" /><!-- 日期函数名称 -->
+		<property name="numberToolAttribute" value="number" /><!-- 数字函数名称 -->
+		<property name="exposeSpringMacroHelpers" value="true" /><!-- 是否使用spring对宏定义的支持 -->
+		<property name="exposeRequestAttributes" value="true" /><!-- 是否开放request属性 -->
+		<property name="requestContextAttribute" value="rc" /><!-- request属性引用名称 -->
+
+		<property name="layoutUrl" value="layout/default.vm" /><!-- 指定layout文件 -->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
+	</bean>
+
+	<!-- 默认视图解析 .jsp -->
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<bean id="jsonViewResolver" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<property name="encoding">
+			<value type="org.codehaus.jackson.JsonEncoding">UTF8</value>
+		</property>
+		<property name="extractValueFromSingleKeyModel" value="true" />
+		<property name="contentType" value="application/json;charset=UTF-8" />
+	</bean>
+
+	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<property name="marshaller">
+			<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
+		</property>
+		<property name="contentType" value="application/xml;charset=UTF-8" />
+	</bean>
+
+	<!-- Cookie本地化解析器 -->
+	<bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="_clientlocale" />
+		<property name="defaultLocale" value="zh_CN" />
+		<property name="cookieMaxAge" value="2147483647" />
+	</bean>
+
+	<!-- 多部分解析器，解析file上传 -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!--1024**1024*5即5M-->
+		<property name="maxUploadSize" value="5242880"/>
+		<property name="maxInMemorySize" value="10240" />
+	</bean>
+
+	<!-- 多视图解析 .vm .json .xml -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="viewResolvers">
+			<list>
+				<ref bean="velocityViewResolver" />
+				<ref bean="jspViewResolver" />
+			</list>
+		</property>
+
+		<property name="defaultViews">
+			<list>
+				<ref bean="jsonViewResolver" />
+				<ref bean="xmlViewResolver" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 异常处理 -->
+	<!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="error" />&lt;!&ndash; 错误页处理 &ndash;&gt;
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>-->
+</beans>

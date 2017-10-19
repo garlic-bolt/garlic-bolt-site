@@ -1,0 +1,2758 @@
+#macro(getPropertyValue $status)
+   #if($status)
+     $status
+   #else 
+   ''
+   #end
+ #end  
+
+#macro(showDebitIndList $debitInd)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="debitInd_input2"class="wid136 ip_span_con lightgrey" style="overflow:hidden">#getDebitIndTitle($debitInd)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="debitInd_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($debitInd) id="debitInd" name="debitInd">
+		
+		<div dropdown="dropdown" id="debitInd_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getDebitIndDropdown()
+		</div>
+	</div>
+#end
+
+#macro(getDebitIndDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('debitInd','','debitInd_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('debitInd','1','debitInd_input2','借');">借</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('debitInd','2','debitInd_input2','贷');">贷</a>
+#end
+
+#macro(getDebitIndTitle $debitInd)
+	#if($debitInd)
+		#if($debitInd == 1)
+			借
+		#elseif($debitInd == 2)
+			贷
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showDebitIndDesc $debitInd)
+	#if($debitInd)
+		#if($debitInd == 1)
+			借
+		#elseif($debitInd == 2)
+			贷
+		#end
+	#end
+#end
+
+#macro(showTransTypeList $transType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="transType_input2"class="wid136 ip_span_con lightgrey">#getTransTypeTitle($transType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="transType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($transType) id="transType" name="transType">
+		
+		<div dropdown="dropdown" id="transType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getTransTypeDropdown()
+		</div></div>
+#end
+
+#macro(getTransTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('transType','','transType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('transType','1000','transType_input2','线上交易');">线上交易</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('transType','1001','transType_input2','冻结类型交易');">冻结类型交易</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('transType','1002','transType_input2','解冻类型交易');">解冻类型交易</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('transType','1003','transType_input2','调账类交易');">调账类交易</a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('transType','1004','transType_input2','补账类交易');">补账类交易</a>
+	<a idkey="10007" href="javascript:;" onclick="checkValue('transType','1500','transType_input2','代收付交易');">代收付交易</a>
+	<a idkey="10008" href="javascript:;" onclick="checkValue('transType','2000','transType_input2','线下交易');">线下交易</a>
+	<a idkey="10009" href="javascript:;" onclick="checkValue('transType','3000','transType_input2','备付金交易');">备付金交易</a>
+	<a idkey="10010" href="javascript:;" onclick="checkValue('transType','4000','transType_input2','清结算交易');">清结算交易</a>
+#end
+
+#macro(getTransTypeTitle $transType)
+	#if($transType)
+		#if($transType == 1000)
+			线上交易
+		#elseif($transType == 1001)
+			冻结类型交易
+			#elseif($transType == 1002)
+			解冻类型交易
+			#elseif($transType == 1003)
+			调账类交易
+			#elseif($transType == 1004)
+			补账类交易
+			#elseif($transType == 1500)
+			代收付交易
+			#elseif($transType == 2000)
+			线下交易
+			#elseif($transType == 3000)
+			备付金交易
+			#elseif($transType == 4000)
+			清结算交易
+			 
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showTransTypeDesc $transType)
+	#if($transType)
+		#if($transType == 1000)
+			线上交易
+		#elseif($transType == 1001)
+			冻结类型交易
+			#elseif($transType == 1002)
+			解冻类型交易
+			#elseif($transType == 1003)
+			调账类交易
+			#elseif($transType == 1004)
+			补账类交易
+			#elseif($transType == 1500)
+			代收付交易
+			#elseif($transType == 2000)
+			线下交易
+			#elseif($transType == 3000)
+			备付金交易
+			#elseif($transType == 4000)
+			清结算交易
+			 
+		#end
+	#end
+#end
+
+
+
+#macro(showAccountCategoryList $accountCategory)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountCategory_input2"class="wid136 ip_span_con lightgrey">#getAccountCategoryTitle($accountCategory)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountCategory_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountCategory) id="accountCategory" name="accountCategory">
+		
+		<div dropdown="dropdown" id="accountCategory_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountCategoryDropdown('accountCategory_input2','accountCategory')
+		</div></div>
+#end
+
+#macro(showTargetAccountTypeList $accountCategory)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountCategory_input2"class="wid136 ip_span_con lightgrey">#getAccountCategoryTitle($accountCategory)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountCategory_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountCategory) id="accountCategory" name="targetAccountType">
+		
+		<div dropdown="dropdown" id="accountCategory_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountCategoryDropdown('accountCategory_input2','accountCategory')
+		</div></div>
+#end
+
+
+#macro(showOwnerCategoryList $ownerCategory)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="ownerCategory_input2"class="wid136 ip_span_con lightgrey">#getAccountCategoryTitle($ownerCategory)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="ownerCategory_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($ownerCategory) id="ownerCategory" name="ownerCategory">
+		
+		<div dropdown="dropdown" id="ownerCategory_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountCategoryDropdown('ownerCategory_input2','ownerCategory')
+		</div></div>
+#end
+
+
+#macro(getAccountCategoryDropdown $inputId,$columnName)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('$columnName','','$inputId','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('$columnName','USER','$inputId','用户帐户');">用户帐户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('$columnName','MERCHANT','$inputId','商户商户');">商户商户</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('$columnName','INNER','$inputId','内部帐户');">内部帐户</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('$columnName','COUPON','$inputId','红包帐户');">红包帐户</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('$columnName','POINT','$inputId','积分帐户');">积分帐户</a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('$columnName','PREPAID','$inputId','预付费帐户');">预付费帐户</a>
+	<a idkey="10007" href="javascript:;" onclick="checkValue('$columnName','P2P','$inputId','P2P帐户');">P2P帐户</a>
+	<a idkey="10008" href="javascript:;" onclick="checkValue('$columnName','WHITELIST','$inputId','白名单账户');">白名单账户</a>
+#end
+
+#macro(getAccountCategoryTitle $accountCategory)
+	#if($accountCategory)
+		#if($accountCategory == 'USER')
+			用户帐户
+		#elseif($accountCategory == 'MERCHANT')
+			商户帐户
+		#elseif($accountCategory == 'INNER')
+			内部帐户
+		#elseif($accountCategory == 'COUPON')
+			红包帐户
+		#elseif($accountCategory == 'POINT')
+			积分帐户
+		#elseif($accountCategory == 'PREPAID')
+			预付费帐户
+		#elseif($accountCategory == 'P2P')
+			P2P帐户
+		#elseif($accountCategory == 'WHITELIST')
+			白名单账户
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showAccountCategoryDesc $accountCategory)
+	#if($accountCategory)
+		#if($accountCategory == 'USER')
+			用户帐户
+		#elseif($accountCategory == 'MERCHANT')
+			商户帐户
+		#elseif($accountCategory == 'INNER')
+			内部帐户
+		#elseif($accountCategory == 'COUPON')
+			红包帐户
+		#elseif($accountCategory == 'POINT')
+			积分帐户
+		#elseif($accountCategory == 'PREPAID')
+			预付费帐户
+		#elseif($accountCategory == 'P2P')
+			P2P帐户
+		#elseif($accountCategory == 'WHITELIST')
+			白名单帐户
+		#end
+	#end
+#end
+
+#macro(getStatusTitle $status)
+	#if($status)
+		#if($status == 0)
+			有效
+		#elseif($status == 1)
+			无效
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showStatusDesc $status)
+	#if($status)
+		#if($status == 0)
+			有效
+		#elseif($status == 1)
+			无效
+		#end
+	#end
+#end
+
+#macro(showSubTypeList $subType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="subType_input2"class="wid136 ip_span_con lightgrey">#getSubTypeTitle($subType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="subType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($subType) id="subType" name="subType">
+		
+		<div dropdown="dropdown" id="subType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getSubTypeDropdown()
+		</div>
+	</div>
+#end
+
+
+
+
+#macro(getSubTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('subType','','subType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('subType','0','subType_input2','汇总科目');">汇总科目</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('subType','1','subType_input2','单户帐户科目');">单户帐户科目</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('subType','2','subType_input2','多户帐户科目');">多户帐户科目</a>
+#end
+
+#macro(getSubTypeTitle $subType)
+	#if($subType)
+		#if($subType == 0)
+			汇总科目
+		#elseif($subType == 1)
+			单户帐户科目
+		#elseif($subType == 2)
+			多户帐户科目
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSubTypeDesc $subType)
+	#if($subType)
+		#if($subType == 0)
+			汇总科目
+		#elseif($subType == 1)
+			单户帐户科目
+		#elseif($subType == 2)
+			多户帐户科目
+		#end
+	#end
+#end
+
+
+
+#macro(showSubPropertyList $subProperty)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="subProperty_input2"class="wid136 ip_span_con lightgrey">#getSubPropertyTitle($subProperty)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="subProperty_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($subProperty) id="subProperty" name="subProperty">
+		
+		<div dropdown="dropdown" id="subProperty_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getSubPropertyDropdown()
+		</div></div>
+#end
+
+#macro(getSubPropertyDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('subProperty','','subProperty_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('subProperty','1','subProperty_input2','资产');">资产</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('subProperty','2','subProperty_input2','负债');">负债</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('subProperty','3','subProperty_input2','共同');">共同</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('subProperty','4','subProperty_input2','所有者权益');">所有者权益</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('subProperty','5','subProperty_input2','损益');">损益</a>
+#end
+
+#macro(getSubPropertyTitle $subProperty)
+	#if($subProperty)
+		#if($subProperty == 1)
+			资产
+		#elseif($subProperty == 2)
+			负债
+		#elseif($subProperty == 3)
+			共同
+		#elseif($subProperty == 4)
+			所有者权益
+		#elseif($subProperty == 5)
+			损益
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSubPropertyDesc $subProperty)
+	#if($subProperty)
+		#if($subProperty == 1)
+			资产
+		#elseif($subProperty == 2)
+			负债
+		#elseif($subProperty == 3)
+			共同
+		#elseif($subProperty == 4)
+			所有者权益
+		#elseif($subProperty == 5)
+			损益
+		#end
+	#end
+#end
+
+
+#macro(showAccountingStateList $accountingState)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountingState_input2"class="wid136 ip_span_con lightgrey">#getAccountingStateTitle($accountingState)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountingState_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountingState) id="accountingState" name="accountingState">
+		
+		<div dropdown="dropdown" id="accountingState_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountingStateDropdown()
+		</div></div>
+#end
+
+#macro(getAccountingStateDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('accountingState','','accountingState_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountingState','0','accountingState_input2','未记录');">未记录</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountingState','1','accountingState_input2','已记录');">已记录</a>
+#end
+
+#macro(getAccountingStateTitle $accountingState)
+	#if($accountingState)
+		#if($accountingState == 0)
+			未记录
+		#elseif($accountingState == 1)
+			已记录
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showAccountingStateDesc $accountingState)
+	#if($accountingState)
+		#if($accountingState == 0)
+			未记录
+		#elseif($accountingState == 1)
+			已记录
+		#end
+	#end
+#end
+
+
+#macro(showAccountingStatusList $accountingStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountingStatus_input2"class="wid136 ip_span_con lightgrey">#getAccountingStatusTitle($accountingStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountingStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountingStatus) id="accountingStatus" name="accountingStatus">
+		
+		<div dropdown="dropdown" id="accountingStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountingStatusDropdown()
+		</div></div>
+#end
+
+#macro(getAccountingStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('accountingStatus','','accountingStatus_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountingStatus','0','accountingStatus_input2','未记录');">未记录</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountingStatus','1','accountingStatus_input2','已记录');">已记录</a>
+#end
+
+#macro(getAccountingStatusTitle $accountingStatus)
+	#if($accountingStatus)
+		#if($accountingStatus == 0)
+			未记录
+		#elseif($accountingStatus == 1)
+			已记录
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showAccountingStatusDesc $accountingStatus)
+	#if($accountingStatus)
+		#if($accountingStatus == 0)
+			未记录
+		#elseif($accountingStatus == 1)
+			已记录
+		#end
+	#end
+#end
+
+
+#macro(showAccountingTimingList $accountingTiming)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountingTiming_input2"class="wid136 ip_span_con lightgrey">#getAccountingTimingTitle($accountingTiming)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountingTiming_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountingTiming) id="accountingTiming" name="accountingTiming">
+		
+		<div dropdown="dropdown" id="accountingTiming_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountingTimingDropdown()
+		</div></div>
+#end
+
+#macro(getAccountingTimingDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('accountingTiming','','accountingTiming_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountingTiming','0','accountingTiming_input2','实时记账');">实时记账</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountingTiming','1','accountingTiming_input2','定时汇总记账');">定时汇总记账</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('accountingTiming','2','accountingTiming_input2','日终汇总记账');">日终汇总记账</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('accountingTiming','3','accountingTiming_input2',' 离线记账');"> 离线记账</a>
+#end
+
+#macro(getAccountingTimingTitle $accountingTiming)
+	#if($accountingTiming)
+		#if($accountingTiming == 0)
+			实时记账
+		#elseif($accountingTiming == 1)
+			定时汇总记账
+		#elseif($accountingTiming == 2)
+			日终汇总记账
+		#elseif($accountingTiming == 3)
+			离线记账
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showAccountingTimingDesc $accountingTiming)
+	#if($accountingTiming)
+		#if($accountingTiming == 0)
+			实时记账
+		#elseif($accountingTiming == 1)
+			定时汇总记账
+		#elseif($accountingTiming == 2)
+			日终汇总记账
+		#elseif($accountingTiming == 3)
+			离线记账
+		#end
+	#end
+#end
+
+
+
+#macro(showAccounStatusList $accountStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountStatus_input2"class="wid136 ip_span_con lightgrey">#getAccountingStatusTitle($accountStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountStatus) id="accountStatus" name="accountStatus">
+		
+		<div dropdown="dropdown" id="accountStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountStatusDropdown()
+		</div></div>
+#end
+
+#macro(getAccountStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('accountStatus','','accountStatus_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountStatus','0','accountStatus_input2','正常');">正常</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountStatus','1','accountStatus_input2','挂起');">挂起</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountStatus','2','accountStatus_input2','冻结支付');">冻结支付</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountStatus','3','accountStatus_input2','冻结止收');">冻结止收</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountStatus','4','accountStatus_input2','全部冻结');">全部冻结</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountStatus','9','accountStatus_input2','销户');">销户</a>
+#end
+
+#macro(getAccountStatusTitle $accountStatus)
+	#if($accountStatus)
+		#if($accountStatus == 0)
+			正常
+		#elseif($accountStatus == 1)
+			挂起
+		#elseif($accountStatus == 2)
+			冻结支付
+		#elseif($accountStatus == 3)
+			冻结止收
+		#elseif($accountStatus == 4)
+			全部冻结
+		#elseif($accountStatus == 9)
+			销户
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showAccountStatusDesc $accountStatus)
+	#if($accountStatus)
+		#if($accountStatus == 0)
+			正常
+		#elseif($accountStatus == 1)
+			挂起
+		#elseif($accountStatus == 2)
+			冻结支付
+		#elseif($accountStatus == 3)
+			冻结止收
+		#elseif($accountStatus == 4)
+			全部冻结
+		#elseif($accountStatus == 9)
+			销户
+		#end
+	#end
+#end
+
+
+
+#macro(showBankAccountTypeList $bankAccountType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bankAccountType_input2"class="wid136 ip_span_con lightgrey">#getBankAccountTypeTitle($bankAccountType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bankAccountType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bankAccountType) id="bankAccountType" name="bankAccountType">
+	
+		<div dropdown="dropdown" id="bankAccountType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBankAccountTypeDropdown()
+		</div>	</div>
+#end
+
+#macro(getBankAccountTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bankAccountType','','bankAccountType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bankAccountType','0','bankAccountType_input2','自有资金账户');">自有资金账户</a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('bankAccountType','1','bankAccountType_input2','备付金存管账户');">备付金存管账户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bankAccountType','2','bankAccountType_input2','备付金收付账户');">备付金收付账户</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bankAccountType','3','bankAccountType_input2','备付金汇缴账户');">备付金汇缴账户</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('bankAccountType','4','bankAccountType_input2','理财');">理财</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('bankAccountType','5','bankAccountType_input2','备付金理财-单位定期存款');">备付金理财-单位定期存款</a>
+	<a idkey="10007" href="javascript:;" onclick="checkValue('bankAccountType','6','bankAccountType_input2','备付金理财-单位通知存款');">备付金理财-单位通知存款</a>
+#end
+
+#macro(getBankAccountTypeTitle $bankAccountType)
+	#if($bankAccountType)
+		#if($bankAccountType == 0)
+			自有资金账户
+		#elseif($bankAccountType == 1)
+			备付金存管账户
+				#elseif($bankAccountType == 2)
+			备付金收付账户
+				#elseif($bankAccountType == 3)
+			备付金汇缴账户
+				#elseif($bankAccountType == 4)
+			理财
+				#elseif($bankAccountType == 5)
+			备付金理财-单位定期存款
+				#elseif($bankAccountType == 6)
+			备付金理财-单位通知存款
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBankAccountTypeDesc $bankAccountType)
+	#if($bankAccountType)
+		#if($bankAccountType == 0)
+			自有资金账户
+		#elseif($bankAccountType == 1)
+			备付金存管账户
+				#elseif($bankAccountType == 2)
+			备付金收付账户
+				#elseif($bankAccountType == 3)
+			备付金汇缴账户
+				#elseif($bankAccountType == 4)
+			理财
+				#elseif($bankAccountType == 5)
+			备付金理财-单位定期存款
+				#elseif($bankAccountType == 6)
+			备付金理财-单位通知存款
+		#end
+	#end
+#end
+
+
+
+#macro(showBankCardTypeList $bankCardType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bankCardType_input2"class="wid136 ip_span_con lightgrey">#getBankCardTypeTitle($bankCardType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bankCardType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bankCardType) id="bankCardType" name="bankCardType">
+		
+		<div dropdown="dropdown" id="bankCardType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBankCardTypeDropdown()
+		</div></div>
+#end
+
+#macro(getBankCardTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bankCardType','','bankCardType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bankCardType','0','bankCardType_input2','借记卡');">借记卡</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bankCardType','1','bankCardType_input2','贷记卡');">贷记卡</a>
+#end
+
+#macro(getBankCardTypeTitle $bankCardType)
+	#if($bankCardType)
+		#if($bankCardType == 0)
+			借记卡
+		#elseif($bankCardType == 1)
+			贷记卡
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBankCardTypeDesc $bankCardType)
+	#if($bankCardType)
+		#if($bankCardType == 0)
+			借记卡
+		#elseif($bankCardType == 1)
+			贷记卡
+		#end
+	#end
+#end
+
+
+
+#macro(showBookCategoryList $bookCategory)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookCategory_input2"class="wid136 ip_span_con lightgrey">#getBookCategoryTitle($bookCategory)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookCategory_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookCategory) id="bookCategory" name="bookCategory">
+		
+		<div dropdown="dropdown" id="bookCategory_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookCategoryDropdown()
+		</div></div>
+#end
+
+#macro(getBookCategoryDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookCategory','','bookCategory_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookCategory','FROM_FEE','bookCategory_input2','应收登记簿');">应收登记簿</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookCategory','TO_FEE','bookCategory_input2','应付登记簿');">应付登记簿</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bookCategory','INCOME','bookCategory_input2','实收登记簿');">实收登记簿</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('bookCategory','PAYOUT','bookCategory_input2','实付登记簿');">实付登记簿</a>
+#end
+
+#macro(getBookCategoryTitle $bookCategory)
+	#if($bookCategory)
+		#if($bookCategory == 'FROM_FEE')
+			应收登记簿
+		#elseif($bookCategory == 'TO_FEE')
+			应付登记簿
+		#elseif($bookCategory == 'INCOME')
+			实收登记簿
+		#elseif($bookCategory == 'PAYOUT')
+			实付登记簿
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBookCategoryDesc $bookCategory)
+		#if($bookCategory)
+		#if($bookCategory == 'FROM_FEE')
+			应收登记簿
+		#elseif($bookCategory == 'TO_FEE')
+			应付登记簿
+		#elseif($bookCategory == 'INCOME')
+			实收登记簿
+		#elseif($bookCategory == 'PAYOUT')
+			实付登记簿
+		#end
+	#end
+#end
+
+
+
+#macro(showBookingStateList $bookingState)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookingState_input2"class="wid136 ip_span_con lightgrey">#getBookingStateTitle($bookingState)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookingState_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookingState) id="bookingState" name="bookingState">
+		
+		<div dropdown="dropdown" id="bookingState_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookingStateDropdown()
+		</div></div>
+#end
+
+#macro(getBookingStateDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookingState','','bookingState_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookingState','0','bookingState_input2','未记录');">未记录</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookingState','1','bookingState_input2','已记录');">已记录</a>
+#end
+
+#macro(getBookingStateTitle $bookingState)
+	#if($bookingState)
+		#if($bookingState == 0)
+			未记录
+		#elseif($bookingState == 1)
+			已记录
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBookingStateDesc $bookingState)
+	#if($bookingState)
+		#if($bookingState == 0)
+			未记录
+		#elseif($bookingState == 1)
+			已记录
+		#end
+	#end
+#end
+
+
+
+#macro(showBookingStatusList $bookingStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookingStatus_input2"class="wid136 ip_span_con lightgrey">#getBookingStatusTitle($bookingStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookingStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookingStatus) id="bookingStatus" name="bookingStatus">
+		
+		<div dropdown="dropdown" id="bookingStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookingStatusDropdown()
+		</div></div>
+#end
+
+#macro(getBookingStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookingStatus','','bookingStatus_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookingStatus','0','bookingStatus_input2','未记录');">未记录</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookingStatus','1','bookingStatus_input2','记录');">记录</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bookingStatus','2','bookingStatus_input2','汇总记录');">汇总记录</a>
+#end
+
+#macro(getBookingStatusTitle $bookingStatus)
+	#if($bookingStatus)
+		#if($bookingStatus == 0)
+			未记录
+		#elseif($bookingStatus == 1)
+			记录
+		#elseif($bookingStatus == 2)
+			汇总记录
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBookingStatusDesc $bookingStatus)
+		#if($bookingStatus)
+		#if($bookingStatus == 0)
+			未记录
+		#elseif($bookingStatus == 1)
+			记录
+		#elseif($bookingStatus == 2)
+			汇总记录
+		#end
+	#end
+#end
+
+
+
+#macro(showBookStatusList $bookStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookStatus_input2"class="wid136 ip_span_con lightgrey">#getBookStatusTitle($bookStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookingStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookStatus) id="bookStatus" name="bookStatus">
+	
+		<div dropdown="dropdown" id="bookStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookStatusDropdown()
+		</div>	</div>
+#end
+
+#macro(getBookStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookStatus','','bookingStatus_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookStatus','0','bookingStatus_input2','未结算');">未结算</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookStatus','1','bookingStatus_input2','已结算');">已结算</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bookStatus','2','bookingStatus_input2','已付款');">已付款</a>
+#end
+
+#macro(getBookStatusTitle $bookStatus)
+	#if($bookStatus)
+		#if($bookStatus == 0)
+			未结算
+		#elseif($bookStatus == 1)
+			已结算
+		#elseif($bookStatus == 2)
+			已付款
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBookStatusDesc $bookStatus)
+	#if($bookStatus)
+		#if($bookStatus == 0)
+			未结算
+		#elseif($bookStatus == 1)
+			已结算
+		#elseif($bookStatus == 2)
+			已付款
+		#end
+	#end
+#end
+
+
+
+#macro(showBookingTimingList $bookingTiming)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookingTiming_input2"class="wid136 ip_span_con lightgrey">#getBookingTimingTitle($bookingTiming)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookingTiming_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookingTiming) id="bookingTiming" name="bookingTiming">
+		
+		<div dropdown="dropdown" id="bookStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookingTimingDropdown()
+		</div></div>
+#end
+
+#macro(getBookingTimingDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookingTiming','','bookingTiming_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookingTiming','0','bookingTiming_input2','不记登记簿');">不记登记簿</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookingTiming','1','bookingTiming_input2','实时记登记簿');">实时记登记簿</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bookingTiming','2','bookingTiming_input2','延迟记登记簿');">延迟记登记簿</a>
+#end
+
+#macro(getBookingTimingTitle $bookingTiming)
+	#if($bookingTiming)
+		#if($bookingTiming == 0)
+			不记登记簿
+		#elseif($bookingTiming == 1)
+			实时记登记簿
+		#elseif($bookingTiming == 2)
+			延迟记登记簿
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showBookingTimingDesc $bookingTiming)
+	#if($bookingTiming)
+		#if($bookingTiming == 0)
+			不记登记簿
+		#elseif($bookingTiming == 1)
+			实时记登记簿
+		#elseif($bookingTiming == 2)
+			延迟记登记簿
+		#end
+	#end
+#end
+
+
+
+#macro(showCodeStatusList $codeStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="codeStatus_input2"class="wid136 ip_span_con lightgrey">#getCodeStatusTitle($codeStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="codeStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($codeStatus) id="codeStatus" name="codeStatus">
+		
+		<div dropdown="dropdown" id="codeStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getCodeStatusDropdown('codeStatus_input2','codeStatus')
+		</div></div>
+#end
+
+#macro(showAgreemntStatusList $status)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="status_input2"class="wid136 ip_span_con lightgrey">#getCodeStatusTitle($status)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="status_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($status) id="status" name="status">
+		
+		<div dropdown="dropdown" id="status_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getCodeStatusDropdown('status_input2','status')
+		</div></div>
+#end
+
+
+#macro(getCodeStatusDropdown $inputId,$columnName)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('$columnName','','$inputId','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('$columnName','0','$inputId','有效');">有效</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('$columnName','1','$inputId','无效');">无效 </a>
+#end
+
+
+ 
+
+#macro(getCodeStatusTitle $codeStatus)
+	#if($codeStatus)
+		#if($codeStatus == 0)
+			有效
+		#elseif($codeStatus == 1)
+			无效
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showCodeStatusDesc $codeStatus)
+	#if($codeStatus)
+		#if($codeStatus == 0)
+			有效
+		#elseif($codeStatus == 1)
+			无效
+		#end
+	#end
+#end
+
+
+#macro(showCurrencyIndList $currencyInd)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="currencyInd_input2"class="wid136 ip_span_con lightgrey">#getcurrencyIndTitle($currencyInd)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="currencyInd_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($currencyInd) id="currencyInd" name="currencyInd">
+		
+		<div dropdown="dropdown" id="currencyInd_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getcurrencyIndDropdown()
+		</div></div>
+#end
+
+#macro(getcurrencyIndDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('currencyInd','','currencyInd_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('currencyInd','0','currencyInd_input2','本外币共用');">本外币共用</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('currencyInd','1','currencyInd_input2','人民币专用');">人民币专用</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('currencyInd','2','currencyInd_input2','外币专用');">外币专用</a>
+#end
+
+#macro(getcurrencyIndTitle $currencyInd)
+	#if($currencyInd)
+		#if($currencyInd == 0)
+			本外币共用
+		#elseif($currencyInd == 1)
+			人民币专用
+		#elseif($currencyInd == 2)
+			外币专用
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showCurrencyIndDesc $currencyInd)
+		#if($currencyInd)
+		#if($currencyInd == 0)
+			本外币共用
+		#elseif($currencyInd == 1)
+			人民币专用
+		#elseif($currencyInd == 2)
+			外币专用
+		#end
+	#end
+#end
+
+
+
+#macro(showDirectionList $direction)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="direction_input2"class="wid136 ip_span_con lightgrey">#getdirectionTitle($direction)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="direction_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($direction) id="direction" name="direction">
+		
+		<div dropdown="dropdown" id="direction_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getdirectionDropdown()
+		</div></div>
+#end
+
+#macro(getdirectionDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('direction','','direction_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('direction','1','direction_input2','增加');">增加</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('direction','2','direction_input2','减少');">减少</a>
+#end
+
+#macro(getdirectionTitle $direction)
+	#if($direction)
+		#if($direction == 0)
+		#elseif($direction == 1)
+			增加
+		#elseif($direction == 2)
+			减少
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showDirectionDesc $direction)
+	#if($direction)
+		#if($direction == 1)
+			增加
+		#elseif($direction == 2)
+			减少
+	#else
+		请选择
+	#end
+	#end
+#end
+
+
+
+#macro(showErrorStatusList $errorStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="errorStatus_input2"class="wid136 ip_span_con lightgrey">#geterrorStatusTitle($errorStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="errorStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($errorStatus) id="errorStatus" name="errorStatus">
+		
+		<div dropdown="dropdown" id="errorStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#geterrorStatusDropdown()
+		</div></div>
+#end
+
+#macro(geterrorStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('errorStatus','','errorStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('errorStatus','1','errorStatus_input2','已解决');">已解决</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('errorStatus','2','errorStatus_input2','未解决');">未解决</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('errorStatus','3','errorStatus_input2','挂起');">挂起</a>
+#end
+
+#macro(geterrorStatusTitle $errorStatus)
+	#if($errorStatus)
+		#if($errorStatus == 0)
+			已解决
+		#elseif($errorStatus == 1)
+			未解决
+		#elseif($errorStatus == 2)
+			挂起
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showErrorStatusDesc $errorStatus)
+		#if($errorStatus)
+		#if($errorStatus == 0)
+			已解决
+		#elseif($errorStatus == 1)
+			未解决
+		#elseif($errorStatus == 2)
+			挂起
+		#end
+	#end
+#end
+
+
+
+#macro(showFeeTypeList $feeType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="feeType_input2"class="wid136 ip_span_con lightgrey">#getfeeTypeTitle($feeType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="feeType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($feeType) id="feeType" name="feeType">
+		
+		<div dropdown="dropdown" id="feeType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getfeeTypeDropdown()
+		</div></div>
+#end
+
+#macro(getfeeTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('feeType','','feeType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('feeType','0','feeType_input2','平台费');">平台费</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('feeType','1','feeType_input2','服务费');">服务费</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('feeType','2','feeType_input2','用户手续费');">用户手续费</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('feeType','3','feeType_input2','商户手续费');">商户手续费</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('feeType','4','feeType_input2','成本');">成本</a>
+#end
+
+#macro(getfeeTypeTitle $feeType)
+	#if($feeType)
+		#if($feeType == 0)
+			平台费
+		#elseif($feeType == 1)
+			服务费
+		#elseif($feeType == 2)
+			用户手续费
+		#elseif($feeType ==3)
+			商户手续费
+		#elseif($feeType == 4)
+			成本
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showFeeTypeDesc $feeType)
+		#if($feeType)
+		#if($feeType == 0)
+			平台费
+		#elseif($feeType == 1)
+			服务费
+		#elseif($feeType == 2)
+			用户手续费
+		#elseif($feeType ==3)
+			商户手续费
+		#elseif($feeType == 4)
+			成本
+		#end
+	#end
+#end
+
+
+
+
+#macro(showJournalStatusList $journalStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="journalStatus_input2"class="wid136 ip_span_con lightgrey">#getjournalStatusTitle($journalStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="journalStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($journalStatus) id="journalStatus" name="journalStatus">
+		
+		<div dropdown="dropdown" id="journalStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getjournalStatusDropdown()
+		</div></div>
+#end
+
+#macro(getjournalStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('journalStatus','','journalStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('journalStatus','0','journalStatus_input2','未拆分录');">未拆分录</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('journalStatus','1','journalStatus_input2','部分拆分录');">部分拆分录</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('journalStatus','2','journalStatus_input2','已拆分录');">已拆分录</a>
+#end
+
+#macro(getjournalStatusTitle $journalStatus)
+	#if($journalStatus)
+		#if($journalStatus == 0)
+			未拆分录
+		#elseif($journalStatus == 1)
+			部分拆分录
+		#elseif($journalStatus == 2)
+			已拆分录
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showJournalStatusDesc $journalStatus)
+		#if($journalStatus)
+		#if($journalStatus == 0)
+			未拆分录
+		#elseif($journalStatus == 1)
+			部分拆分录
+		#elseif($journalStatus == 2)
+			已拆分录
+		#end
+	#end
+#end
+
+
+
+#macro(showJournalTimingList $journalTiming)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="journalTiming_input2"class="wid136 ip_span_con lightgrey">#getjournalTimingTitle($journalTiming)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="journalTiming_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($journalTiming) id="journalTiming" name="journalTiming">
+		
+		<div dropdown="dropdown" id="journalTiming_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getjournalTimingDropdown()
+		</div></div>
+#end
+
+#macro(getjournalTimingDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('journalTiming','','journalTiming_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('journalTiming','0','journalTiming_input2','实时逐笔拆分');">实时逐笔拆分</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('journalTiming','1','journalTiming_input2','定时批量拆分');">定时批量拆分</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('journalTiming','2','journalTiming_input2','日终批量拆分');">日终批量拆分</a>
+#end
+
+#macro(getjournalTimingTitle $journalTiming)
+	#if($journalTiming)
+		#if($journalTiming == 0)
+			实时逐笔拆分
+		#elseif($journalTiming == 1)
+			定时批量拆分
+		#elseif($journalTiming == 2)
+			日终批量拆分
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showJournalTimingDesc $journalTiming)
+		#if($journalTiming)
+		#if($journalTiming == 0)
+			实时逐笔拆分
+		#elseif($journalTiming == 1)
+			定时批量拆分
+		#elseif($journalTiming == 2)
+			日终批量拆分
+		#end
+	#end
+#end
+
+
+
+
+#macro(showJournalTypeList $journalType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="journalType_input2"class="wid136 ip_span_con lightgrey">#getjournalTypeTitle($journalType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="journalType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($journalType) id="journalType" name="journalType">
+		
+		<div dropdown="dropdown" id="journalType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getjournalTypeDropdown()
+		</div></div>
+#end
+
+#macro(getjournalTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('journalType','','journalType_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('journalType','0','journalType_input2','一般流水');">一般流水</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('journalType','1','journalType_input2','反交易冲正');">反交易冲正</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('journalType','2','journalType_input2','调账流水');">调账流水</a>
+#end
+
+#macro(getjournalTypeTitle $journalType)
+	#if($journalType)
+		#if($journalType == 0)
+			一般流水
+		#elseif($journalType == 1)
+			反交易冲正
+		#elseif($journalType == 2)
+			调账流水
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showJournalTypeDesc $journalType)
+		#if($journalType)
+		#if($journalType == 0)
+			一般流水
+		#elseif($journalType == 1)
+			反交易冲正
+		#elseif($journalType == 2)
+			调账流水
+		#end
+	#end
+#end
+
+
+
+#macro(showPaymentTypeList $paymentType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="paymentType_input2"class="wid136 ip_span_con lightgrey">#getpaymentTypeTitle($paymentType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="paymentType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($paymentType) id="paymentType" name="paymentType">
+		
+		<div dropdown="dropdown" id="paymentType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getpaymentTypeDropdown()
+		</div></div>
+#end
+
+#macro(getpaymentTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('paymentType','','paymentType_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('paymentType','0','paymentType_input2','自动付款');">自动付款</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('paymentType','1','paymentType_input2','条件付款');">条件付款</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('paymentType','2','paymentType_input2','主动提取');">主动提取</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('paymentType','3','paymentType_input2','人工付款');">人工付款</a>
+#end
+
+#macro(getpaymentTypeTitle $paymentType)
+	#if($paymentType)
+		#if($paymentType == 0)
+			自动付款
+		#elseif($paymentType == 1)
+			条件付款
+		#elseif($paymentType == 2)
+			主动提取
+		#elseif($paymentType == 3)
+			人工付款
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showPaymentTypeDesc $paymentType)
+			#if($paymentType)
+		#if($paymentType == 0)
+			自动付款
+		#elseif($paymentType == 1)
+			条件付款
+		#elseif($paymentType == 2)
+			主动提取
+		#elseif($paymentType == 3)
+			人工付款
+		#end
+	#end
+#end
+
+
+
+
+#macro(showSettleMethodList $settleMethod)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="settleMethod_input2"class="wid136 ip_span_con lightgrey">#getSettleMethodTitle($settleMethod)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="settleMethod_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($settleMethod) id="settleMethod" name="settleMethod">
+		
+		<div dropdown="dropdown" id="settleMethod_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getSettleMethodDropdown()
+		</div></div>
+#end
+
+#macro(getSettleMethodDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('settleMethod','','settleMethod_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('settleMethod','0','settleMethod_input2','逐笔结算');">逐笔结算</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('settleMethod','1','settleMethod_input2','按发生额结算');">按发生额结算</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('settleMethod','2','settleMethod_input2','按发生笔数结算');">按发生笔数结算</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('settleMethod','3','settleMethod_input2','按交易额结算');">按交易额结算</a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('settleMethod','4','settleMethod_input2','T+n结算');">T+n结算</a>
+#end
+
+#macro(getSettleMethodTitle $settleMethod)
+	#if($settleMethod)
+		#if($settleMethod == 0)
+			逐笔结算
+		#elseif($settleMethod == 1)
+			按发生额结算
+		#elseif($settleMethod == 2)
+			按发生笔数结算
+		#elseif($settleMethod == 3)
+			按交易额结算
+		#elseif($settleMethod == 4)
+			T+n结算
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSettleMethodDesc $settleMethod)
+	#if($settleMethod)
+		#if($settleMethod == 0)
+			逐笔结算
+		#elseif($settleMethod == 1)
+			按发生额结算
+		#elseif($settleMethod == 2)
+			按发生笔数结算
+		#elseif($settleMethod == 3)
+			按交易额结算
+		#elseif($settleMethod == 4)
+			T+n结算
+		#end
+	#end
+#end
+
+
+
+
+#macro(showSettleStatusList $settleStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="settleStatus_input2"class="wid136 ip_span_con lightgrey">#getsettleStatusTitle($settleStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="settleStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($settleStatus) id="settleStatus" name="settleStatus">
+		
+		<div dropdown="dropdown" id="settleStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getsettleStatusDropdown()
+		</div></div>
+#end
+
+#macro(getsettleStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('settleStatus','','settleStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('settleStatus','0','settleStatus_input2','未清算');">未清算</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('settleStatus','1','settleStatus_input2','已清算');"已清算</a>
+#end
+
+#macro(getsettleStatusTitle $settleStatus)
+	#if($settleStatus)
+		#if($settleStatus == 0)
+			未清算
+		#elseif($settleStatus == 1)
+			已清算
+		
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSettleStatusDesc $settleStatus)
+	#if($settleStatus)
+		#if($settleStatus == 0)
+			未清算
+		#elseif($settleStatus == 1)
+			已清算
+		#end
+	#end
+#end
+
+
+
+
+#macro(showSubjectStatusList $subjectStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="subjectStatus_input2"class="wid136 ip_span_con lightgrey">#getsubjectStatusTitle($subjectStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="subjectStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($subjectStatus) id="subjectStatus" name="subjectStatus">
+		
+		<div dropdown="dropdown" id="subjectStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getsubjectStatusDropdown()
+		</div></div>
+#end
+
+#macro(getsubjectStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('subjectStatus','','subjectStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('subjectStatus','0','subjectStatus_input2','有效');">有效</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('subjectStatus','1','subjectStatus_input2','无效');"无效</a>
+#end
+
+#macro(getsubjectStatusTitle $subjectStatus)
+	#if($subjectStatus)
+		#if($subjectStatus == 0)
+			有效
+		#elseif($subjectStatus == 1)
+		无效
+		
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSubjectStatusDesc $subjectStatus)
+	#if($subjectStatus)
+		#if($subjectStatus == 0)
+			有效
+		#elseif($subjectStatus == 1)
+		无效
+		#end
+	#end
+#end
+
+
+#macro(showSysControlStatusList $sysControlStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="sysControlStatus_input2"class="wid136 ip_span_con lightgrey">#getsysControlStatusTitle($sysControlStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="sysControlStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($sysControlStatus) id="sysControlStatus" name="sysControlStatus">
+		
+		<div dropdown="dropdown" id="sysControlStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getsysControlStatusDropdown()
+		</div></div>
+#end
+
+#macro(getsysControlStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('sysControlStatus','','sysControlStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('sysControlStatus','0','sysControlStatus_input2','系统开放');">系统开放</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('sysControlStatus','1','sysControlStatus_input2','运行中 ');"运行中 </a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('sysControlStatus','2','sysControlStatus_input2','系统维护 ');"系统维护 </a>
+#end
+
+#macro(getsysControlStatusTitle $sysControlStatus)
+	#if($sysControlStatus)
+		#if($sysControlStatus == 0)
+			系统开放
+		#elseif($sysControlStatus == 1)
+		运行中
+		#elseif($sysControlStatus == 2)
+		系统维护
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showSysControlStatusDesc $sysControlStatus)
+#if($sysControlStatus)
+		#if($sysControlStatus == 0)
+			系统开放
+		#elseif($sysControlStatus == 1)
+		运行中
+		#elseif($sysControlStatus == 2)
+		系统维护
+		#end
+	#end
+#end
+
+
+
+
+#macro(showTaskStatusList $taskStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="taskStatus_input2"class="wid136 ip_span_con lightgrey">#gettaskStatusTitle($taskStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="taskStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($taskStatus) id="taskStatus" name="taskStatus">
+		
+		<div dropdown="dropdown" id="taskStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#gettaskStatusDropdown()
+		</div></div>
+#end
+
+#macro(gettaskStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('taskStatus','','taskStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('taskStatus','0','taskStatus_input2','静止');">静止</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('taskStatus','1','taskStatus_input2','等待 ');等待 </a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('taskStatus','2','taskStatus_input2','正在执行 ');"正在执行 </a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('taskStatus','6','taskStatus_input2','执行成功 ');"执行成功 </a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('taskStatus','9','taskStatus_input2','执行失败 ');"执行失败 </a>
+#end
+
+#macro(gettaskStatusTitle $taskStatus)
+	#if($taskStatus)
+		#if($taskStatus == 0)
+			静止
+		#elseif($taskStatus == 1)
+		等待
+		#elseif($taskStatus == 2)
+		正在执行 
+			#elseif($taskStatus == 6)
+		执行成功
+			#elseif($taskStatus == 9)
+		执行失败
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showTaskStatusDesc $taskStatus)
+#if($taskStatus)
+		#if($taskStatus == 0)
+			静止
+		#elseif($taskStatus == 1)
+		等待
+		#elseif($taskStatus == 2)
+		正在执行 
+			#elseif($taskStatus == 6)
+		执行成功
+			#elseif($taskStatus == 9)
+		执行失败
+		#end
+	#end
+#end
+
+
+
+
+#macro(showTransFlowStatusList $transFlowStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="transFlowStatus_input2"class="wid136 ip_span_con lightgrey">#gettransFlowStatusTitle($transFlowStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="transFlowStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($transFlowStatus) id="transFlowStatus" name="transFlowStatus">
+		
+		<div dropdown="dropdown" id="transFlowStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#gettransFlowStatusDropdown()
+		</div></div>
+#end
+
+#macro(gettransFlowStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('transFlowStatus','','transFlowStatus_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('transFlowStatus','1','transFlowStatus_input2','有效(未拆分录');">有效(未拆分录)</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('transFlowStatus','2','transFlowStatus_input2','冲正参加平衡 ');"冲正参加平衡 </a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('transFlowStatus','3','transFlowStatus_input2','冲正不参加平衡 ');"冲正不参加平衡 </a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('transFlowStatus','6','transFlowStatus_input2','冲正不参加平衡 ');"分录流水抹帐 </a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('transFlowStatus','8','transFlowStatus_input2','冲正不参加平衡 ');"已拆分录流水 </a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('transFlowStatus','9','transFlowStatus_input2','无效 ');"无效 </a>
+#end
+
+#macro(gettransFlowStatusTitle $transFlowStatus)
+	#if($transFlowStatus)
+		#if($transFlowStatus == 1)
+			有效(未拆分录)
+		#elseif($transFlowStatus == 2)
+		冲正参加平衡
+		#elseif($transFlowStatus == 3)
+		冲正不参加平衡 
+		#elseif($transFlowStatus == 6)
+		分录流水抹帐
+		#elseif($transFlowStatus == 8)
+		已拆分录流水
+		#elseif($transFlowStatus == 9)
+		无效
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showTransFlowStatusDesc $transFlowStatus)
+	#if($transFlowStatus)
+		#if($transFlowStatus == 1)
+			有效(未拆分录)
+		#elseif($transFlowStatus == 2)
+		冲正参加平衡
+		#elseif($transFlowStatus == 3)
+		冲正不参加平衡 
+		#elseif($transFlowStatus == 6)
+		分录流水抹帐
+		#elseif($transFlowStatus == 8)
+		已拆分录流水
+		#elseif($transFlowStatus == 9)
+		无效
+		#end
+	#end
+#end
+
+
+
+
+
+
+#macro(showTransOrderStatusList $transOrderStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="transOrderStatus_input2"class="wid136 ip_span_con lightgrey">#gettransOrderStatusTitle($transOrderStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="transOrderStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($transOrderStatus) id="transOrderStatus" name="transOrderStatus">
+		
+		<div dropdown="dropdown" id="transOrderStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#gettransOrderStatusDropdown()
+		</div></div>
+#end
+
+#macro(gettransOrderStatusDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('transOrderStatus','','transOrderStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('transOrderStatus','0','transOrderStatus_input2','未处理');">未处理</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('transOrderStatus','1','transOrderStatus_input2','部分处理完成 ');"部分处理完成 </a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('transOrderStatus','2','transOrderStatus_input2','全部处理完成 ');"全部处理完成 </a>
+#end
+
+#macro(gettransOrderStatusTitle $transOrderStatus)
+	#if($transOrderStatus)
+		#if($transOrderStatus == 0)
+			未处理
+		#elseif($transOrderStatus == 1)
+		部分处理完成
+		#elseif($transOrderStatus == 2)
+		全部处理完成
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(showTransOrderStatusDesc $transOrderStatus)
+#if($transOrderStatus)
+		#if($transOrderStatus == 0)
+			未处理
+		#elseif($transOrderStatus == 1)
+		部分处理完成
+		#elseif($transOrderStatus == 2)
+		全部处理完成
+		#end
+	#end
+#end
+
+
+#macro (showPager $pager)
+    #set($FRONT_LEN = 4)
+    #set($BEHIND_LEN = 5)
+    #set($PAGER_LEN = 10)
+    #set($PAGER_CENTER = $!{pager.pageNo} - $!{BEHIND_LEN})
+	
+	<div class="left wid500 paddl60 margt10 rel_pos">
+		<label class="label_txt wid60 txtright margr8 margt11">
+			每页显示 </label>
+		<div class="input_con_type_top wid95 margt4">
+			<span idkey="10" id="pageSize_input2"
+				class="wid40 ip_span_con lightgrey">$!pager.pageSize</span><span
+				class="bord06"></span><a style="margin: 0; padding: 0;"
+				id="pageSize_sel3" class="icon_arrow_up" href="javascript:;"></a>
+		</div>
+		<label class="label_txt wid60 txtleft margl6 margt11">
+			条记录 </label>
+		<div id="pageSize_sel3_con3"
+			class="down_pop_select wid95 bord16 abs_pos10"
+			style="display: none;">
+			<a class="sel_check" href="javascript:;">10</a> <a
+				href="javascript:;">50</a> <a href="javascript:;">$!pager.itemCount</a>
+		</div>
+	</div>
+    
+    <div class="chan_table_page_wrap wid620 margt10 paddr36">
+    <div class="chan_table_page">
+    <a onclick="funSearch(1)" href="javascript:;">首页</a>
+    
+    #if($pager.pageNo == 1) ##如果能向上翻页
+    	<a class="page_turn_btn over_page" href="javascript:void(0);">&lt;</a>
+    #else
+    	<a class="page_turn_btn" href="javascript:funSearch($!{pager.pageNo}-1);">&lt;</a>
+    #end
+    	
+	#if(${pager.pageCount} <= ${PAGER_LEN})
+      #foreach($p in [1..$!{pager.pageCount}])
+    	#if($p==$pager.pageNo)
+    		<a onclick="funSearch($!{p})" class="chan_page_check"href="javascript:;">$!{p}</a>
+    	#else
+    		<a onclick="funSearch($!{p})" href="javascript:;">$!{p}</a>
+    	#end
+      #end
+	#elseif($!{pager.pageCount} > $!{PAGER_LEN})
+	  
+	#if($!{pager.pageNo} <= $!{FRONT_LEN})
+        #foreach($p in [1..10])
+    	  #if($p==$pager.pageNo)
+    		<a onclick="funSearch($!{p})" class="chan_page_check"href="javascript:;">$!{p}</a>
+          #else
+    		<a onclick="funSearch($!{p})" href="javascript:;">$!{p}</a>
+    	  #end
+		#end
+	#end
+
+  #elseif($!{pager.pageNo} < $!{PAGER_CENTER})
+       #set($header = $!{pager.pageNo} - $!{FRONT_LEN})
+       #set($ender = $!{pager.pageNo} + $!{BEHIND_LEN})
+       #foreach($p in [$!{header}..$!{ender}])
+        #if($p==$pager.pageNo)
+    		<a onclick="funSearch($!{p})" class="chan_page_check"href="javascript:;">$!{p}</a>
+    	#else
+    		<a onclick="funSearch($!{p})" href="javascript:;">$!{p}</a>
+    	#end
+	#end
+  #else
+	#set($begin = $!{pager.pageCount} - $!{FRONT_LEN} - $!{BEHIND_LEN})
+       #foreach($p in [$!{begin}..$!{pager.pageCount}])
+        #if($p==$pager.pageNo)
+    	  <a onclick="funSearch($!{p})" class="chan_page_check"href="javascript:;">$!{p}</a>
+        #else
+    	  <a onclick="funSearch($!{p})" href="javascript:;">$!{p}</a>
+		#end
+	#end
+	  
+  #end
+  
+    #if($pager.pageNo == $pager.pageCount) ##如果能向下翻页
+      <a class="page_turn_btn over_page" href="javascript:;">&gt;</a>
+    #else
+      <a class="page_turn_btn " href="javascript:funSearch($!{pager.pageNo}+1);">&gt;</a>
+    #end
+    
+    <a onclick="funSearch($!{pager.pageCount})" href="javascript:;">尾页</a>
+    <div class="chant_page_num"><span>第</span><input type="text" value="$!{pager.pageNo}" name="toPageNum" id="toPageNum" class="input_page_num">
+    <span>页</span></div>
+    
+    <a gobtn="goPage" class="right chan_btn wid60 margr65" href="javascript:funSerchForGo(${pager.pageCount});">确定</a>
+    </div>
+    </div>
+#end
+
+ 
+#macro (showRecordNumber $pager)
+    #set($FRONT_LEN = 4)
+    #set($BEHIND_LEN = 5)
+    #set($PAGER_LEN = 10)
+    #set($PAGER_CENTER = $!{pager.pageNo} - $!{BEHIND_LEN})
+	
+	<div class="left wid500 paddl60 margt10 rel_pos">
+		<div class="input_con_type_top wid95 margt4">
+			<span idkey="10" id="pageSize_input2"
+				class="wid40 ip_span_con lightgrey">$!pager.itemCount</span><span
+				class="bord06"></span><a style="margin: 0; padding: 0;"
+				id="pageSize_sel3" class="icon_arrow_up" href="javascript:;"></a>
+		</div>
+		
+		<label class="label_txt wid60 txtleft margl6 margt11">
+			条记录 </label>
+		<div id="pageSize_sel3_con3"
+			class="down_pop_select wid95 bord16 abs_pos10"
+			style="display: none;">
+			<a class="sel_check" href="javascript:;">10</a> <a
+				href="javascript:;">50</a> <a href="javascript:;">$!pager.itemCount</a>
+		</div>
+	</div>
+#end
+
+#macro(showInterestFlagList $flag)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="interestFlag_input2"class="wid136 ip_span_con lightgrey">#getYesOrNoTitle($flag)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="interestFlag_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($interestFlag) id="interestFlag" name="interestFlag">
+		
+		<div dropdown="dropdown" id="interestFlag_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getYesOrNoDropdown('interestFlag_input2','interestFlag')
+		</div>
+		</div>
+#end
+
+
+#macro(showOverdrawFlagList $flag)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="overdrawFlag_input2"class="wid136 ip_span_con lightgrey">#getYesOrNoTitle($flag)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="overdrawFlag_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($overdrawFlag) id="overdrawFlag" name="overdrawFlag">
+		
+		<div dropdown="dropdown" id="overdrawFlag_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getYesOrNoDropdown('overdrawFlag_input2','overdrawFlag')
+		</div></div>
+#end
+
+#macro(showAuthorizedFlagList $flag)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="authorizedFlag_input2"class="wid136 ip_span_con lightgrey">#getYesOrNoTitle($flag)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="authorizedFlag_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($authorizedFlag) id="authorizedFlag" name="authorizedFlag">
+		
+		<div dropdown="dropdown" id="authorizedFlag_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getYesOrNoDropdown('authorizedFlag_input2','authorizedFlag')
+		</div>
+		</div>
+#end
+
+#macro(showBalanceFlagList $flag)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="balanceFlag_input2"class="wid136 ip_span_con lightgrey">#getYesOrNoTitle($flag)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="balanceFlag_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($balanceFlag) id="balanceFlag" name="balanceFlag">
+		
+		<div dropdown="dropdown" id="balanceFlag_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getYesOrNoDropdown('balanceFlag_input2','balanceFlag')
+		</div>
+		</div>
+#end
+
+
+
+#macro(getYesOrNoDropdown $inputId,$columnName)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('$columnName','','$inputId','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('$columnName','0','$inputId','是');">是</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('$columnName','1','$inputId','否');">否 </a>
+#end
+
+#macro(getYesOrNoTitle $flag)
+	#if($flag)
+		#if($flag == 0)
+			是
+		#elseif($flag == 1)
+			否
+		#end
+	#else
+		请选择
+	#end
+#end
+#macro(showYesOrNoDesc $flag)
+	#if($flag)
+		#if($flag == 0)
+			是
+		#elseif($flag == 1)
+			否
+		#end
+	#end
+#end
+
+
+#macro(showOperateTypeList $operateType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="operateType_input2"class="wid136 ip_span_con lightgrey">#getOperateTypeTitle($operateType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="OperateType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($operateType) id="operateType" name="OperateType">
+		
+		<div dropdown="dropdown" id="OperateType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getOperateTypeDropdown()
+		</div></div>
+#end
+
+#macro(getOperateTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('operateType','','operateType_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('operateType','CREATED','operateType_input2','创建');">创建</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('operateType','FROEN','operateType_input2','冻结 ');">冻结 </a> 
+#end
+
+#macro(getOperateTypeTitle $operateType)
+	#if($operateType)
+		#if($operateType == 0)
+			创建
+		#elseif($operateType == 1)
+		冻结 
+		#end
+	#else
+		请选择
+	#end
+#end
+
+
+ #macro(showOperateTypeDesc $operateType)
+	#if($operateType)
+		#if($operateType == 'CREATED')
+			创建账户
+		#elseif($operateType == 101)
+			创建账户
+		#elseif($operateType == 102)
+			账户销户
+		#elseif($operateType == 'DESTORY')
+			账户销户	
+		#elseif($operateType == 201)
+			冻结账户	
+		#elseif($operateType == 'FROEN')
+			冻结账户
+		#elseif($operateType == 202)
+			解冻账户
+		#elseif($operateType == 301)
+			账户充值
+		#elseif($operateType == 401)
+			账户提现
+		#elseif($operateType == 501)
+			客户授权
+		#elseif($operateType == 502)
+			客户取消授权
+		#elseif($operateType == 511)
+			客户设置账户密码
+	   #elseif($operateType == 512)
+			客户取消账户密码
+		#elseif($operateType == 521)
+			冻结账户余额
+		#elseif($operateType == 522)
+			解冻账户余额
+			 
+	  #else 
+			$operateType
+		#end
+	#end
+#end
+
+
+
+#macro(showAccountTypeList $accountType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="accountType_input2"class="wid136 ip_span_con lightgrey">#getAccountTypeTitle($accountType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="accountType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($accountType) id="accountType" name="accountType">
+		<div dropdown="dropdown" id="accountType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getAccountTypeDropdown()
+		</div>
+		</div>
+#end
+
+#macro(getAccountTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('accountType','','accountType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('accountType','10','accountType_input2','虚拟帐户');">虚拟帐户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','80','accountType_input2','自有资金 ');">自有资金 </a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','81','accountType_input2','备付金存管 ');">备付金存管 </a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','82','accountType_input2','备付金风险保证金 ');">备付金风险保证金 </a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','83','accountType_input2','备付金收付账');">备付金收付账 </a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','84','accountType_input2','备付金汇缴账');">备付金汇缴账  </a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','85','accountType_input2','收入利润 ');">收入利润</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','86','accountType_input2','备付金定存');">备付金定存</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','51','accountType_input2','商户对公');">商户对公</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','52','accountType_input2','商户对私');">商户对私</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','61','accountType_input2','用户借记卡');">用户借记卡</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','62','accountType_input2','用户信用卡');">用户信用卡</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','88','accountType_input2','pos商户账户');">pos商户账户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','70','accountType_input2','p2p商户账户');">p2p商户账户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','75','accountType_input2','p2p用户账户');">p2p用户账户</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('accountType','90','accountType_input2','u8账户');">u8账户</a>
+#end
+
+#macro(getAccountTypeTitle $accountType)
+	#if($accountType)
+		#if($accountType == 10) 虚拟账户 
+		#elseif($accountType == 80) 自有资金 
+		#elseif($accountType == 81) 备付金存管 
+		#elseif($accountType == 82) 备付金风险保证金 
+		#elseif($accountType == 83) 备付金收付账                             
+		#elseif($accountType == 84) 备付金汇缴账                             
+		#elseif($accountType == 85) 收入利润                                 
+		#elseif($accountType == 86) 备付金定存                               
+		#elseif($accountType == 51) 商户对公                    
+		#elseif($accountType == 52) 商户对私                    
+		#elseif($accountType == 61) 用户借记卡 
+		#elseif($accountType == 62) 用户信用卡                        
+		#elseif($accountType == 88) pos商户账户                       
+		#elseif($accountType == 70) p2p商户账户                       
+		#elseif($accountType == 75) p2p用户账户  
+		#elseif($accountType == 90) u8账户  
+		#end
+	#else
+		请选择
+	#end
+#end
+
+
+ #macro(showAccountTypeDesc $accountType)
+	#if($accountType)
+		#if($accountType == 10) 虚拟账户 
+		#elseif($accountType == 80) 自有资金 
+		#elseif($accountType == 81) 备付金存管 
+		#elseif($accountType == 82) 备付金风险保证金 
+		#elseif($accountType == 83) 备付金收付账                             
+		#elseif($accountType == 84) 备付金汇缴账                             
+		#elseif($accountType == 85) 收入利润                                 
+		#elseif($accountType == 86) 备付金定存                               
+		#elseif($accountType == 51) 商户对公                    
+		#elseif($accountType == 52) 商户对私                    
+		#elseif($accountType == 61) 用户借记卡 
+		#elseif($accountType == 62) 用户信用卡                        
+		#elseif($accountType == 88) pos商户账户                       
+		#elseif($accountType == 70) p2p商户账户                       
+		#elseif($accountType == 75) p2p用户账户  
+		#elseif($accountType == 90) u8账户  
+	  #else 
+			$accountType
+		#end
+	#end
+#end
+
+
+
+#macro(showBookTimingList $bookTiming)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bookTiming_input2"class="wid136 ip_span_con lightgrey">#getBookTimingTitle($bookTiming)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bookTiming_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bookTiming) id="bookTiming" name="bookTiming">
+		
+		<div dropdown="dropdown" id="bookTiming_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBookTimingDropdown()
+		</div></div>
+#end
+
+#macro(getBookTimingDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bookTiming','','bookTiming_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bookTiming','0','bookTiming_input2','不记登记簿');">不记登记簿</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bookTiming','1','bookTiming_input2','实时记登记簿');">实时记登记簿 </a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('bookTiming','2','bookTiming_input2','延迟记登记簿');">延迟记登记簿 </a> 
+#end
+
+#macro(getBookTimingTitle $bookTiming)
+	#if($bookTiming)
+	#if($bookTiming == 0) 不记登记簿 
+	#elseif($bookTiming == 1) 实时记登记簿 
+	#elseif($bookTiming == 2) 延迟记登记簿 
+		#end
+	#else
+		请选择
+	#end
+#end
+
+
+ #macro(showBookTimingDesc $bookTiming)
+	#if($bookTiming)
+	#if($bookTiming == 0) 不记登记簿 
+	#elseif($bookTiming == 1) 实时记登记簿 
+	#elseif($bookTiming == 2) 延迟记登记簿 
+	  #else 
+			$bookTiming
+		#end
+	#end
+#end
+
+
+
+
+
+
+
+#macro(showSubLevelList $level)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="subLevel_input2"class="wid136 ip_span_con lightgrey">#getLevelTitle($level)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="subLevel_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($subLevel) id="subLevel" name="subLevel">
+		
+		<div dropdown="dropdown" id="subLevel_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getLevelDropdown('subLevel_input2','subLevel')
+		</div>
+		</div>
+#end
+
+
+
+#macro(showTransLevelList $level)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="transLevel_input2"class="wid136 ip_span_con lightgrey">#getLevelTitle($level)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="transLevel_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($transLevel) id="transLevel" name="transLevel">
+		
+		<div dropdown="dropdown" id="transLevel_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getLevelDropdown('transLevel_input2','transLevel')
+		</div>
+		</div>
+#end
+
+
+#macro(showCheckLevelList $level)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="checkLevel_input2"class="wid136 ip_span_con lightgrey">#getLevelTitle($level)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="checkLevel_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($checkLevel) id="checkLevel" name="checkLevel">
+		
+		<div dropdown="dropdown" id="checkLevel_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getLevelDropdown('checkLevel_input2','checkLevel')
+		</div>
+		</div>
+#end
+
+#macro(showAuthLevelList $level)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="authLevel_input2"class="wid136 ip_span_con lightgrey">#getLevelTitle($level)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="authLevel_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($authLevel) id="authLevel" name="authLevel">
+		
+		<div dropdown="dropdown" id="authLevel_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getLevelDropdown('authLevel_input2','authkLevel')
+		</div>
+		</div>
+#end
+
+
+
+#macro(getLevelDropdown $inputId,$columnName)
+	<a idkey="10001" href="javascript:;" onclick="checkValue('$columnName','1','$inputId','一级');">一级</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('$columnName','2','$inputId','二级');">二级 </a>
+#end
+
+#macro(getLevelTitle $level)
+	#if($level)
+		#if($level == 1)
+			一级
+		#elseif($level == 2)
+			二级
+		#end
+	#else
+		请选择
+	#end
+#end
+#macro(showLevelDesc $level)
+	#if($level)
+		#if($level == 1)
+			一级
+		#elseif($level == 2)
+			二级
+		#end
+	#end
+#end
+
+#macro(showOffBalanceIndList $offBalanceInd)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="offBalanceInd_input2"class="wid136 ip_span_con lightgrey">#getOffBalanceIndTitle($offBalanceInd)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="offBalanceInd_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($offBalanceInd) id="offBalanceInd" name="offBalanceInd">
+		
+		<div dropdown="dropdown" id="offBalanceInd_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getOffBalanceIndDropdown()
+		</div>
+		</div>
+#end
+
+
+
+#macro(getOffBalanceIndDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('offBalanceInd','','offBalanceInd_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('offBalanceInd',0,'offBalanceInd_input2','表内');">表内</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('offBalanceInd',1,'offBalanceInd_input2','表外');">表外</a>
+#end
+
+#macro(getOffBalanceIndTitle $offBalanceInd)
+	#if($offBalanceInd)
+		#if($offBalanceInd == 0)
+			表内
+		#elseif($offBalanceInd == 1)
+			表外
+		#end
+	#else
+		请选择
+	#end
+#end
+#macro(showOffBalanceIndDesc $offBalanceInd)
+	#if($offBalanceInd)
+	#if($offBalanceInd == 0)
+			表内
+		#elseif($offBalanceInd == 1)
+			表外
+		#end
+	#end
+#end
+
+
+
+#macro(showSettleTypeList $settleType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="settleType_input2"class="wid136 ip_span_con lightgrey">#getSettleTypeTitle($settleType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="settleType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($settleType) id="settleType" name="settleType">
+		
+		<div dropdown="dropdown" id="settleType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getSettleTypeDropdown()
+		</div>
+		</div>
+#end
+
+
+
+#macro(getSettleTypeDropdown)
+<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('settleType','','settleType_input2','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('settleType',4,'settleType_input2','正常结算');">正常结算</a>
+#end
+
+#macro(getSettleTypeTitle $settleType)
+	#if($settleType)
+		#if($settleType == 4)
+			正常结算
+		#end
+	#else
+		请选择
+	#end
+#end
+#macro(showSettleTypeDesc $settleType)
+	#if($settleType)
+		#if($settleType == 4)
+			正常结算
+		#end
+	#end
+#end
+
+<!--业务类型下拉框-->
+#macro(showBusiTypeList $busiTypeId)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="busiTypeId_input2"class="wid136 ip_span_con lightgrey">#getBusiTypeTitle($busiTypeId)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="busiTypeId_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($busiTypeId) id="busiTypeId" name="busiTypeId">
+		
+		<div dropdown="dropdown" id="busiTypeId_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getBusiTypeDropdown('busiTypeId_input2','busiTypeId')
+		</div></div>
+#end
+
+#macro(getBusiTypeTitle $busiTypeId)
+	#if($busiTypeId)
+		#if($busiTypeId == '支付')
+			支付
+		#elseif($busiTypeId == '查询')
+			查询
+		#elseif($busiTypeId == '代收')
+			代收
+		#elseif($busiTypeId == '代付')
+			代付
+		#elseif($busiTypeId == '转账')
+			转账
+		#elseif($busiTypeId == '批量结算')
+			批量结算
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getBusiTypeDropdown $inputId,$columnName)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('$columnName','','$inputId','请选择');">请选择</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('$columnName','支付','$inputId','支付');">支付</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('$columnName','查询','$inputId','查询');">查询</a>
+	<a idkey="10003" href="javascript:;" onclick="checkValue('$columnName','代收','$inputId','代收');">代收</a>
+	<a idkey="10004" href="javascript:;" onclick="checkValue('$columnName','代付','$inputId','代付');">代付</a>
+	<a idkey="10005" href="javascript:;" onclick="checkValue('$columnName','转账','$inputId','转账');">转账</a>
+	<a idkey="10006" href="javascript:;" onclick="checkValue('$columnName','批量结算','$inputId','批量结算');">批量结算</a>
+#end
+
+<!--请求类型下拉框-->
+#macro(showRequestTypeList $requestType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="requestType_input2"class="wid136 ip_span_con lightgrey">#getRequestTypeTile($requestType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="requestType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($requestType) id="requestType" name="requestType">
+		
+		<div dropdown="dropdown" id="requestType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getRequestTypeDropdown()
+		</div></div>
+#end
+
+#macro(getRequestTypeTile $requestType)
+	#if($requestType)
+		#if($requestType == 0)
+			查询
+		#elseif($requestType == 1)
+			支付
+		#elseif($requestType == 2)
+			通知
+		#elseif($requestType == 3)
+			token
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getRequestTypeDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('requestType','','requestType_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('requestType','0','requestType_input2','查询');">查询</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('requestType','1','requestType_input2','支付');">支付</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('requestType','2','requestType_input2','代收');">通知</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('requestType','3','requestType_input2','代付');">token</a>
+#end
+
+<!--token状态下拉框-->
+#macro(showStatusList $status)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="status_input2"class="wid136 ip_span_con lightgrey">#getStatusTile($status)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="status_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($status) id="status" name="status">
+		
+		<div dropdown="dropdown" id="status_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getStatusDropdown()
+		</div></div>
+#end
+
+#macro(getStatusTile $status)
+	#if($status)
+		#if($status == 0)
+			正常
+		#elseif($status == 1)
+			异常
+		#elseif($status == 2)
+			失效
+		#elseif($status == 3)
+			过期
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('status','','status_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('status',0,'status_input2','正常');">正常</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('status',1,'status_input2','异常');">异常</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('status',2,'status_input2','失效');">失效</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('status',3,'status_input2','过期');">过期</a>
+#end
+
+#macro(showCardStatusList $cardStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="cardStatus_input2"class="wid136 ip_span_con lightgrey">#getcardStatusTile($cardStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="cardStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($cardStatus) id="cardStatus" name="cardStatus">
+		
+		<div dropdown="dropdown" id="cardStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getcardStatusDropdown()
+		</div></div>
+#end
+
+#macro(getcardStatusTile $cardStatus)
+	#if($cardStatus)
+		#if($cardStatus == 0)
+			可用
+		#elseif($cardStatus == 1)
+			冻结
+		#elseif($cardStatus == 2)
+			不支持
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getcardStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('cardStatus','','cardStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('cardStatus','0','cardStatus_input2','可用');">可用</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('cardStatus','1','cardStatus_input2','冻结');">冻结</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('cardStatus','2','cardStatus_input2','不支持');">不支持</a>
+#end
+
+#macro(showSignMethodList $signMethod)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="signMethod_input2"class="wid136 ip_span_con lightgrey">#getsignMethodTile($signMethod)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="signMethod_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($signMethod) id="signMethod" name="signMethod">
+		
+		<div dropdown="dropdown" id="signMethod_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getsignMethodDropdown()
+		</div></div>
+#end
+
+#macro(getsignMethodTile $signMethod)
+	#if($signMethod)
+		#if($signMethod == 0)
+			md5
+		#elseif($signMethod == 1)
+			sha
+		#elseif($signMethod == 2)
+			sha2
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getsignMethodDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('signMethod','','signMethod_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('signMethod','0','signMethod_input2','md5');">md5</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('signMethod','1','signMethod_input2','sha');">sha</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('signMethod','2','signMethod_input2','sha2');">sha2</a>
+#end
+
+#macro(showBusinessSystemStatusList $businessSystemStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="businessSystemStatus_input2"class="wid136 ip_span_con lightgrey">#getbusinessSystemStatusTile($businessSystemStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="businessSystemStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($businessSystemStatus) id="businessSystemStatus" name="businessSystemStatus">
+		
+		<div dropdown="dropdown" id="businessSystemStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getbusinessSystemStatusDropdown()
+		</div></div>
+#end
+
+#macro(getbusinessSystemStatusTile $businessSystemStatus)
+	#if($businessSystemStatus)
+		#if($businessSystemStatus == 0)
+			审核
+		#elseif($businessSystemStatus == 1)
+			开放
+		#elseif($businessSystemStatus == 2)
+			停用
+		#elseif($businessSystemStatus == 3)
+			关闭			
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getbusinessSystemStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('businessSystemStatus','','businessSystemStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('businessSystemStatus','0','businessSystemStatus_input2','审核');">审核</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('businessSystemStatus','1','businessSystemStatus_input2','开放');">开放</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('businessSystemStatus','2','businessSystemStatus_input2','停用');">停用</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('businessSystemStatus','3','businessSystemStatus_input2','关闭');">关闭</a>
+#end
+
+#macro(showServiceInfoList $serviceInfoType)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="serviceInfoType_input2"class="wid136 ip_span_con lightgrey">#getserviceInfoTypeTile($serviceInfoType)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="serviceInfoType_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($serviceInfoType) id="serviceInfoType" name="serviceInfoType">
+		
+		<div dropdown="dropdown" id="serviceInfoType_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getserviceInfoTypeDropdown()
+		</div></div>
+#end
+
+#macro(getserviceInfoTypeTile $serviceInfoType)
+	#if($serviceInfoType)
+		#if($serviceInfoType == 0)
+			主存款行
+		#elseif($serviceInfoType == 1)
+			银联
+		#elseif($serviceInfoType == 2)
+			第三方支付机构		
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getserviceInfoTypeDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('serviceInfoType','','serviceInfoType_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('serviceInfoType','0','serviceInfoType_input2','主存款行');">主存款行</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('serviceInfoType','1','serviceInfoType_input2','银联');">银联</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('serviceInfoType','2','serviceInfoType_input2','第三方支付机构');">第三方支付机构</a>
+#end
+
+#macro(showServiceStatus $serviceStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="serviceStatus_input2"class="wid136 ip_span_con lightgrey">#getserviceStatusTile($serviceStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="serviceStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($serviceStatus) id="serviceStatus" name="serviceStatus">
+		
+		<div dropdown="dropdown" id="serviceStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getserviceStatusDropdown()
+		</div></div>
+#end
+
+#macro(getserviceStatusTile $serviceStatus)
+	#if($serviceStatus)
+		#if($serviceStatus == 0)
+			启用
+		#elseif($serviceStatus == 1)
+			停用
+		#elseif($serviceStatus == 2)
+			关闭		
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getserviceStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('serviceStatus','','serviceStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('serviceStatus','0','serviceStatus_input2','启用');">启用</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('serviceStatus','1','serviceStatus_input2','停用');">停用</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('serviceStatus','2','serviceStatus_input2','关闭');">关闭</a>
+#end
+
+#macro(showBankKind $bankKind)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="bankKind_input2"class="wid136 ip_span_con lightgrey">#getbankKindTile($bankKind)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="bankKind_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($bankKind) id="bankKind" name="bankKind">
+		
+		<div dropdown="dropdown" id="bankKind_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getbankKindDropdown()
+		</div></div>
+#end
+
+#macro(getbankKindTile $bankKind)
+	#if($bankKind)
+		#if($bankKind == 0)
+			国有银行
+		#elseif($bankKind == 1)
+			商业银行
+		#elseif($bankKind == 2)
+			农村信用社	
+		#elseif($bankKind == 3)
+			外资银行				
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getbankKindDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('bankKind','','bankKind_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bankKind','0','bankKind_input2','国有银行');">国有银行</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('bankKind','1','bankKind_input2','商业银行');">商业银行</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bankKind','2','bankKind_input2','农村信用社');">农村信用社</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('bankKind','2','bankKind_input2','外资银行');">外资银行</a>	
+#end
+
+#macro(showServiceChannelStatus $serviceChannelStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="serviceChannelStatus_input2"class="wid136 ip_span_con lightgrey">#getserviceChannelStatusTile($serviceChannelStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="serviceChannelStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($serviceChannelStatus) id="serviceChannelStatus" name="serviceChannelStatus">
+		
+		<div dropdown="dropdown" id="serviceChannelStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getserviceChannelStatusDropdown()
+		</div></div>
+#end
+
+#macro(getserviceChannelStatusTile $serviceChannelStatus)
+	#if($serviceChannelStatus)
+		#if($serviceChannelStatus == 0)
+			正常
+		#elseif($serviceChannelStatus == 1)
+			关闭				
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getserviceChannelStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('serviceChannelStatus','','serviceChannelStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('serviceChannelStatus','0','serviceChannelStatus_input2','正常');">正常</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('serviceChannelStatus','1','serviceChannelStatus_input2','关闭');">关闭</a>	
+#end
+
+#macro(showRouteStatus $routeStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="routeStatus_input2"class="wid136 ip_span_con lightgrey">#getrouteStatusTile($routeStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="routeStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($routeStatus) id="routeStatus" name="routeStatus">
+		
+		<div dropdown="dropdown" id="routeStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getrouteStatusDropdown()
+		</div></div>
+#end
+
+#macro(getrouteStatusTile $routeStatus)
+	#if($routeStatus)
+		#if($routeStatus == 0)
+			启用
+		#elseif($routeStatus == 1)
+			停用				
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getrouteStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('routeStatus','','routeStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('routeStatus','0','routeStatus_input2','启用');">启用</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('routeStatus','1','routeStatus_input2','停用');">停用</a>	
+#end
+
+#macro(showPayMethod $payMethod)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="payMethod_input2"class="wid136 ip_span_con lightgrey">#getpayMethodTile($payMethod)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="payMethod_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($payMethod) id="payMethod" name="payMethod">
+		
+		<div dropdown="dropdown" id="payMethod_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getpayMethodDropdown()
+		</div></div>
+#end
+
+#macro(getpayMethodTile $payMethod)
+	#if($payMethod)
+		#if($payMethod == 0)
+			收单
+		#elseif($payMethod == 1)
+			付款
+		#elseif($payMethod == 2)
+			转账
+		#elseif($payMethod == 3)
+			代收
+		#elseif($payMethod == 4)
+			代付
+		#elseif($payMethod == 5)
+			结算			
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getpayMethodDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('payMethod','','payMethod_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('payMethod','0','payMethod_input2','收单');">收单</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethod','1','payMethod_input2','付款');">付款</a>	
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethod','1','payMethod_input2','转账');">转账</a>	
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethod','1','payMethod_input2','代收');">代收</a>	
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethod','1','payMethod_input2','代付');">代付</a>	
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethod','1','payMethod_input2','结算');">结算</a>		
+#end
+
+#macro(showpayMethodStatus $payMethodStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="payMethodStatus_input2"class="wid136 ip_span_con lightgrey">#getpayMethodStatusTile($payMethodStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="payMethodStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($payMethodStatus) id="payMethodStatus" name="payMethodStatus">
+		
+		<div dropdown="dropdown" id="payMethodStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getpayMethodStatusDropdown()
+		</div></div>
+#end
+
+#macro(getpayMethodStatusTile $payMethodStatus)
+	#if($payMethodStatus)
+		#if($payMethodStatus == 0)
+			正常
+		#elseif($payMethodStatus == 1)
+			停用			
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getpayMethodStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('payMethodStatus','','payMethodStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('payMethodStatus','0','payMethodStatus_input2','正常');">正常</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payMethodStatus','1','payMethodStatus_input2','停用');">停用</a>		
+#end
+
+#macro(showPayChannelStatus $payChannelStatus)
+	<div class="input_con_type_top wid190 rel_pos" style="overflow:visible;margin-top:5px;">
+			<span id="payChannelStatus_input2"class="wid136 ip_span_con lightgrey">#getpayChannelStatusTile($payChannelStatus)</span>
+		<span class="bord06" style="height:28px"></span> 
+		<a id="payChannelStatus_sel2" class="icon_arrow_down" href="javascript:;"></a>
+		<input type="hidden" value=#getPropertyValue($payChannelStatus) id="payChannelStatus" name="payChannelStatus">
+		
+		<div dropdown="dropdown" id="payChannelStatus_sel2_con2" class="down_pop_select wid190 bord16 ads_pos_t30_l120" style="display: none;left:0px;top:30px;">
+			#getpayChannelStatusDropdown()
+		</div></div>
+#end
+
+#macro(getpayChannelStatusTile $payChannelStatus)
+	#if($payChannelStatus)
+		#if($payChannelStatus == 0)
+			正常
+		#elseif($payChannelStatus == 1)
+			挂起	
+		#elseif($payChannelStatus == 1)
+			停用
+		#elseif($payChannelStatus == 1)
+			无效			
+		#end
+	#else
+		请选择
+	#end
+#end
+
+#macro(getpayChannelStatusDropdown)
+	<a idkey="10000" class="sel_check" href="javascript:;" onclick="checkValue('payChannelStatus','','payChannelStatus_input2','请选择');">请选择</a>
+	<a idkey="10002" href="javascript:;" onclick="checkValue('payChannelStatus','0','payChannelStatus_input2','正常');">正常</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payChannelStatus','1','payChannelStatus_input2','挂起');">挂起</a>
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payChannelStatus','1','payChannelStatus_input2','停用');">停用</a>		
+	<a idkey="10001" href="javascript:;" onclick="checkValue('payChannelStatus','1','payChannelStatus_input2','无效');">无效</a>		
+#end
