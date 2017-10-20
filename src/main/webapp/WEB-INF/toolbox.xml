@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tools>
-	<toolbox scope="request">
-		<!-- <tool>
-			<key>dsTool</key>
-			<scope>application</scope>
-			<class>com.chanjetpay.utils.DataParam</class>
-		</tool> -->
 
-		<tool>
-			<key>link</key>
-			<scope>application</scope>
-			<class>org.apache.velocity.tools.view.LinkTool</class>
-		</tool>
-		
-		<tool>
-		   <key>date</key>
-		   <scope>application</scope>
-		   <class>org.apache.velocity.tools.generic.DateTool</class>
-		</tool>
-		
-		<tool>
-		   <key>number</key>
-		   <scope>application</scope>
-		   <class>org.apache.velocity.tools.generic.NumberTool</class>
-		</tool>
-	</toolbox>
-</tools>
+<toolbox>
+	<tool>
+		<key>WebSiteTool</key>
+		<scope>application</scope>
+		<class>com.chanjetpay.wx.common.WebSiteTool</class>
+	</tool>
+
+	<tool>
+		<key>link</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.view.LinkTool</class>
+	</tool>
+
+	<tool>
+	   <key>date</key>
+	   <scope>application</scope>
+	   <class>org.apache.velocity.tools.generic.DateTool</class>
+	</tool>
+
+	<tool>
+	   <key>number</key>
+	   <scope>application</scope>
+	   <class>org.apache.velocity.tools.generic.NumberTool</class>
+	</tool>
+</toolbox>
+
 
 
 
