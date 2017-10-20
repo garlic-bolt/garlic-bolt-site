@@ -1,16 +1,5 @@
-#set($ageTitle="蒜苔网-智能社区服务平台")
+#set($pageTitle="蒜苔网-智能社区服务平台")
 #set($webSiteUrl=${WebSiteTool.siteUrl})
-
-<style>
-	a {
-		color: #3b8bba; /* block-background-text-normal */
-		text-decoration: none;
-	}
-
-	a:visited {
-		color: #265778; /* block-normal-text-normal */
-	}
-</style>
 
 <div class="header">
 	<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
@@ -18,7 +7,7 @@
 		<ul class="pure-menu-list">
 			<li class="pure-menu-item pure-menu-selected"><a href="${webSiteUrl}/home" class="pure-menu-link">首页</a></li>
 			<li class="pure-menu-item"><a href="${webSiteUrl}/demo" class="pure-menu-link">演示</a></li>
-			<li class="pure-menu-item"><a href="${webSiteUrl}/about" class="pure-menu-link">关于</a></li>
+			<li class="pure-menu-item"><a href="${webSiteUrl}/refer" class="pure-menu-link">关于</a></li>
 		</ul>
 	</div>
 </div>
@@ -98,3 +87,15 @@
 		© 2015-2017 蒜苔网版权所有 <a href="${webSiteUrl}/help">联系方法</a> <a href="${webSiteUrl}/legal">隐私政策</a> <a href="mailto:bao.li.net@hotmail.com">意见反馈</a>
 	</div>
 </div>
+
+
+<style>
+	a {
+		color: #3b8bba; /* block-background-text-normal */
+		text-decoration: none;
+	}
+
+	a:visited {
+		color: #265778; /* block-normal-text-normal */
+	}
+</style>

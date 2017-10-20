@@ -19,6 +19,14 @@ public class DashboardController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/legal")
+	public ModelAndView legal() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("legal");
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/about")
 	public ModelAndView about() {
 		ModelAndView mav = new ModelAndView();
@@ -27,10 +35,10 @@ public class DashboardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/legal")
-	public ModelAndView legal() {
+	@RequestMapping(value = "/demo")
+	public ModelAndView demo() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("legal");
+		mav.setViewName("demo");
 
 		return mav;
 	}
