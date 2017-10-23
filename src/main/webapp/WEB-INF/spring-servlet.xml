@@ -11,10 +11,10 @@
 	
    	<!-- 开启注解 ,需要如下两个类 -->
 	<context:annotation-config />
-<!--	<context:component-scan base-package="com.chanjetpay.wx.*" />-->
+<!--	<context:component-scan base-packacom.chanjetpay.garlic.*" />-->
 
 	<!-- 扫描Controller -->
-	<context:component-scan base-package="com.chanjetpay.wx">
+	<context:component-scan base-package="com.chanjetpay.garlic">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>

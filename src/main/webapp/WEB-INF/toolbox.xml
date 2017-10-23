@@ -4,7 +4,7 @@
 	<tool>
 		<key>WebSiteTool</key>
 		<scope>application</scope>
-		<class>com.chanjetpay.wx.common.WebSiteTool</class>
+		<class>com.chanjetpay.garlic.common.WebSiteTool</class>
 	</tool>
 
 	<tool>

@@ -12,7 +12,7 @@
   	<!--开启注解处理器-->
     <context:annotation-config />
   	<!-- 开启组件扫描 -->
-	<context:component-scan base-package="com.chanjetpay.wx.*" />
+	<context:component-scan base-package="com.chanjetpay.garlic.*" />
 
 <!--	<tx:annotation-driven transaction-manager="transactionManager"proxy-target-class="true"/>-->
 
