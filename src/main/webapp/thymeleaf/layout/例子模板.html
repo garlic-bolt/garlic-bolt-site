@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  lang="zh-CN" dir="ltr"
+	  th:attr="data-page=(${primaryPage} and ${secondaryPage} ? (${primaryPage} + '-' + ${secondaryPage}) : '')">
+<head th:with="timestamp=${#dates.format(#dates.createNow(),'yyyyMMddHH')}">
+	<meta charset="UTF-8" />
+	<!-- 页面标题 -->
+	<title th:text="${pageTitle} + '- 后台系统'"></title>
+	<!-- 网站图标 -->
+	<link rel="icon" th:href="@{/bower_components/handle/dist/handle/images/favicon.png}" />
+	<!-- 全局样式 -->
+	<link rel="stylesheet" th:href="@{/assets/admin/reset.css(t=${timestamp})}" />
+	<!-- 全局脚本 -->
+	<script th:src="@{/assets/admin/global.js(t=${timestamp})}"></script>
+</head>
+<body class="Page" th:with="timestamp=${#dates.format(#dates.createNow(),'yyyyMMddHH')}">
+<header class="Page-header Header">
+	<div class="Header-brand">
+		<a href="/"><img th:src="@{/bower_components/handle/dist/handle/images/logo.png(t=${timestamp})}" th:attr="srcset=(@{/bower_components/handle/dist/handle/images/logo-2x.png(t=${timestamp})} + ' 2x')" alt="卖好车" /><span>后台</span></a>
+	</div>
+	<div class="Header-extra">
+		<div class="Header-operations">
+			<!-- 页头中的操作 -->
+			<th:block layout:fragment="headerActions"></th:block>
+			<!-- 新增数据按钮 -->
+			<div class="Header-action Action" th:if="${creatable}"><button class="Action-trigger fa fa-plus js-add--header" type="button" data-toggle="modal" data-target=".js-addNewData" title="新增"><span class="sr-only">新增</span></button></div>
+			<!-- 用户信息 -->
+			<th:block th:if="${user != null}">
+				<div class="Header-action Action Action--avatar"><a class="Action-trigger" href="javascript:void(0);"><span th:text="${user.realName.substring((user.realName.length() - 2), user.realName.length())}"></span></a>
+					<div class="Action-content Card">
+						<div class="Card-content">
+							<ul th:object="${user}">
+								<li th:if="*{mobile}" th:text="*{mobile}"></li>
+								<li th:if="*{email}" th:text="*{email}"></li>
+							</ul>
+						</div>
+						<div class="Card-footer">
+							<a th:href="@{/logout.htm}" class="btn btn-default btn-xs">退出</a>
+						</div>
+					</div>
+				</div>
+			</th:block>
+		</div>
+	</div>
+</header>
+<main class="Page-content">
+	<div class="Page-sidebar Sidebar">
+		<nav class="Sidebar-navs Navs">
+			<ul>
+				<div layout:fragment="content"></div>
+			</ul>
+		</nav>
+	</div>
+	<div class="Page-main">
+		<div class="Content container-fluid">
+			<div class="Content-header">
+				<!-- 面包屑 -->
+				<div class="Breadcrumb"><i class="fa fa-map-marker"></i><th:block layout:fragment="breadcrumb"></th:block></div>
+				<!-- 页面标题 -->
+				<h1 th:text="${pageTitle}"></h1>
+			</div>
+			<!-- 页面内容片段 -->
+			<th:block layout:fragment="content"></th:block>
+			<!-- 条件筛选区域 -->
+			<th:block layout:fragment="query"></th:block>
+			<!-- 数据表格区域 -->
+			<div class="Area Area--table">
+				<table class="js-showDataTable"></table>
+			</div>
+		</div>
+		<!-- 新增/修改数据对话框 -->
+		<th:block layout:fragment="modal"></th:block>
+	</div>
+</main>
+<!-- 各页面脚本 -->
+<th:block layout:fragment="bodyAssets"></th:block>
+</body>
+</html>

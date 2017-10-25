@@ -8,164 +8,99 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 	default-autowire="byName" default-lazy-init="true">
-	
+
+	<context:property-placeholder location="classpath:app.properties" />
+
    	<!-- 开启注解 ,需要如下两个类 -->
 	<context:annotation-config />
-<!--	<context:component-scan base-packacom.chanjetpay.garlic.*" />-->
-
 	<!-- 扫描Controller -->
 	<context:component-scan base-package="com.chanjetpay.garlic">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 
-	<context:property-placeholder location="classpath:app.properties" />
 
-	<!-- 开启aop -->
-	<aop:aspectj-autoproxy />
-
-	<!-- 配置拦截器 -->
-	<!--<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
-			<mvc:exclude-mapping path="/login"/>
-			<mvc:exclude-mapping path="/logoff"/>
-			<mvc:exclude-mapping path="/**/*.html"/>
-			<bean class="com.chanjetpay.interceptor.LoginInterceptor" />
-		</mvc:interceptor>
-
-		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
-			<mvc:exclude-mapping path="/login"/>
-			<mvc:exclude-mapping path="/logoff"/>
-			<mvc:exclude-mapping path="/**/*.html"/>
-			<bean class="com.chanjetpay.interceptor.MenuInterceptor" />
-		</mvc:interceptor>
-
-		<mvc:interceptor>
-			<mvc:mapping path="/account/*"/>
-			<mvc:mapping path="/channel/*"/>
-			<mvc:mapping path="/trading/*"/>
-			<mvc:mapping path="/public/*"/>
-			<mvc:mapping path="/user/*"/>
-			<bean class="com.chanjetpay.interceptor.PermissionInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>-->
 
 	<!-- 静态资源映射 -->
 	<mvc:resources location="/assets/" mapping="/assets/**"/>
 	<!--	<mvc:resources location="/.package/" mapping="/.package/**"/>-->
+
 	<mvc:default-servlet-handler/>
-
 	<mvc:annotation-driven />
-	<!-- 把标记了@Controller注解的类转换为bean
-	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/plain;charset=UTF-8</value>
-				<value>application/json;charset=UTF-8</value>
-			</list>
-		</property>
-	</bean>
-	&lt;!&ndash; 避免IE执行AJAX时,返回JSON出现下载文件 &ndash;&gt;
-	&lt;!&ndash; Jackson 是Spring 自带的功能 &ndash;&gt;
-	<bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;charset=UTF-8</value>
-				<value>application/xml;charset=UTF-8</value>
-				<value>text/html;charset=UTF-8</value>
-				<value>text/plain;charset=UTF-8</value>
-				<value>text/xml;charset=UTF-8</value>
-				<value>text/javascript;charset=UTF-8</value>
-			</list>
-		</property>
+	<aop:aspectj-autoproxy />
+
+	<!-- use thymeleaf  -->
+	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/thymeleaf/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<!-- Template cache is set to false (default is true).        -->
+		<property name="cacheable" value="false" />
+		<property name="characterEncoding" value="UTF-8"/>
 	</bean>
 
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<ref bean="stringHttpMessageConverter" />
-			<ref bean="mappingJackson2HttpMessageConverter" />
-		</mvc:message-converters>
-	</mvc:annotation-driven>-->
 
-	<!-- Velocity引擎 -->
-	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/" />
-		<property name="configLocation" value="/WEB-INF/velocity.properties" />
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
 	</bean>
 
-	<!-- Velocity视图解析器 -->
-	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-		<property name="cache" value="false" /><!--是否缓存模板 -->
-		<property name="order" value="1" />
-		<property name="prefix" value="velocity/" />
-		<property name="suffix" value=".vm" />
-
-		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" /><!-- toolbox配置文件路径 -->
-		<property name="dateToolAttribute" value="date" /><!-- 日期函数名称 -->
-		<property name="numberToolAttribute" value="number" /><!-- 数字函数名称 -->
-		<property name="exposeSpringMacroHelpers" value="true" /><!-- 是否使用spring对宏定义的支持 -->
-		<property name="exposeRequestAttributes" value="true" /><!-- 是否开放request属性 -->
-		<property name="requestContextAttribute" value="rc" /><!-- request属性引用名称 -->
-
-		<property name="layoutUrl" value="layout/default.vm" /><!-- 指定layout文件 -->
-		<property name="contentType" value="text/html;charset=UTF-8" />
-		<property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
-	</bean>
-
-	<!-- 默认视图解析 .jsp -->
-	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="2" />
-		<property name="prefix" value="/WEB-INF/jsp/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
-
-	<bean id="jsonViewResolver" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		<property name="encoding">
-			<value type="org.codehaus.jackson.JsonEncoding">UTF8</value>
-		</property>
-		<property name="extractValueFromSingleKeyModel" value="true" />
-		<property name="contentType" value="application/json;charset=UTF-8" />
-	</bean>
-
-	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.xml.MarshallingView">
-		<property name="marshaller">
-			<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
-		</property>
-		<property name="contentType" value="application/xml;charset=UTF-8" />
-	</bean>
-
-	<!-- Cookie本地化解析器 -->
-	<bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="cookieName" value="_clientlocale" />
-		<property name="defaultLocale" value="zh_CN" />
-		<property name="cookieMaxAge" value="2147483647" />
-	</bean>
-
-	<!-- 多部分解析器，解析file上传 -->
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding" value="UTF-8" />
-		<!--1024**1024*5即5M-->
-		<property name="maxUploadSize" value="5242880"/>
-		<property name="maxInMemorySize" value="10240" />
-	</bean>
-
-	<!-- 多视图解析 .vm .json .xml -->
+	<!--
+	- The ContentNegotiatingViewResolver delegates to the InternalResourceViewResolver and BeanNameViewResolver,
+	- and uses the requested media type (determined by the path extension) to pick a matching view.
+	- When the media type is 'text/html', it will delegate to the InternalResourceViewResolver's JstlView,
+	- otherwise to the BeanNameViewResolver.
+	-->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="order" value="1" />
+		<property name="contentNegotiationManager" ref="cnManager"/>
+
 		<property name="viewResolvers">
 			<list>
-				<ref bean="velocityViewResolver" />
-				<ref bean="jspViewResolver" />
+				<!-- Used here for 'xml' and 'atom' views  -->
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+					<property name="order" value="1"/>
+				</bean>
+
+				<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+					<property name="templateEngine" ref="templateEngine" />
+					<property name="characterEncoding" value="UTF-8"/>
+					<property name="order" value="2"/>
+					<!-- We need to set exclusions because Content Negotiation tries to resolve from -->
+					<!-- Thymeleaf even if a specific view bean (of a different class) is already    -->
+					<!-- found, which might cause exceptions (e.g. ThymeleafView does not have a     -->
+					<!-- 'marshaller' property).                                                     -->
+					<property name="excludedViewNames" value="*.xml" />
+				</bean>
+
+				<!-- Default viewClass: JSTL view (JSP with html output)-->
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/views/"/>
+					<property name="suffix" value=".jsp"/>
+					<property name="order" value="3"/>
+				</bean>
 			</list>
 		</property>
+	</bean>
 
-		<property name="defaultViews">
-			<list>
-				<ref bean="jsonViewResolver" />
-				<ref bean="xmlViewResolver" />
-			</list>
+	<!-- Simple strategy: only path extension is taken into account -->
+	<bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<!--<property name="favorPathExtension" value="true"/>
+		<property name="ignoreAcceptHeader" value="true"/>
+		<property name="defaultContentType" value="text/html"/>-->
+
+		<property name="useJaf" value="false"/>
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="mediaType" />
+		<property name="ignoreAcceptHeader" value="true"/>
+		<property name="defaultContentType" value="text/html" />
+
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="html" value="text/html" />
+				<entry key="xml" value="application/xml" />
+				<entry key="atom" value="application/atom+xml" />
+			</map>
 		</property>
 	</bean>
 

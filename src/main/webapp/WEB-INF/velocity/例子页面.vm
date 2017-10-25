@@ -1,0 +1,64 @@
+#set($primaryPage = "example")
+#set($secondaryPage = "demo")
+#set($pageTitle = "示例页面")
+
+#define($headAssets)
+<link rel="stylesheet" href="/template/views/admin/example/demo.css?t=$!timestamp">
+#end
+
+#define($bodyAssets)
+<script src="/template/views/admin/example/demo.js?t=$!timestamp"></script>
+#end
+
+#define($breadcrumb)
+<ul>
+	<li>使用案例</li>
+	<li>$pageTitle</li>
+</ul>
+#end
+
+#define($queryArea)
+<div class="Area Area--query">
+	<form class="Card">
+		<div class="Card-content">
+			<div class="row">
+				<div class="form-group col-xs-6 col-sm-4 col-lg-3">
+					<label>查询条件</label>
+					<select name="selectDemo" class="form-control input-sm" multiple data-placeholder="请选择">
+						#foreach($o in $opts)
+							<option value="${o.value}">${o.text}</option>
+						#end
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="Card-footer">
+			<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span>筛选</span></button><button type="reset" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i><span>重置</span></button>
+		</div>
+	</form>
+</div>
+#end
+
+#define($modal)
+<div class="modal fade js-addNewData">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+				<h4 class="modal-title">填写信息</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					...
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary js-saveNewData">提交</button>
+			</div>
+		</div>
+	</div>
+</div>
+#end
+
+<section><p>这是一个示例页面</p></section>

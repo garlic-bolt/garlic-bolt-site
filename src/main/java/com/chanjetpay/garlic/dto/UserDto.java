@@ -10,6 +10,16 @@ public class UserDto implements Serializable{
 	private Long id;
 	private String name;
 
+	private Boolean admin;
+
+	public Boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
 	public Long getId() {
 		return id;
 	}
