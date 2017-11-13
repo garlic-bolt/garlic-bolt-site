@@ -54,10 +54,18 @@ public class DashboardController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/webody")
+	public ModelAndView webody() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("webody");
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/about")
 	public ModelAndView about() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("webody");
+		mav.setViewName("about");
 
 		return mav;
 	}

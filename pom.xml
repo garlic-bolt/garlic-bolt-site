@@ -8,8 +8,8 @@
   <artifactId>garlic-bolt-site</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>garlic bolt site Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <name>garlic-bolt-site</name>
+  <description>蒜苔网</description>
 
   <properties>
     <file.name>ROOT</file.name>
