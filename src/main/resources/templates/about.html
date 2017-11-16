@@ -46,7 +46,7 @@
 </head>
 <body>
 
-	<div class="header" th:replace="~{fragment::common_menu('about')}">
+	<div class="header" th:replace="~{layout/fragment::common_menu('about')}">
 		
 		<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
 			<a class="pure-menu-heading" href="javascript:void(0);">蒜苔</a>
@@ -140,7 +140,7 @@
     }
   </style>
 	
-	<div th:replace="~{fragment :: common_copy}" class="footer l-box is-center">
+	<div th:replace="~{layout/fragment :: common_copy}" class="footer l-box is-center">
 		<label>© 2015-2017 蒜苔网版权所有</label>
 		<a href="javascript:void(0);">联系方法</a>
 		<a href="javascript:void(0);">隐私政策</a>
@@ -160,20 +160,21 @@
 	</div>
 
 	<script type="text/javascript" th:inline="javascript">
+		
+		var token = [[${#strings.randomAlphanumeric(count)}]];
 
-	  $(document).ready(function(){
+/*	  $(document).ready(function(){
 			var e = jQuery.Event( "click" );
 			// trigger an artificial click event
 			$('#modal-one').trigger( e );
-	  });
+	  });*/
 	  
 		$("#a-submit").click(function () {
-			console.info("on click");
 			$.ajax({
 				method: "POST",
 			  async: false,
 		    contentType: "application/json",
-				url: "/reg?token=" + [[${token}]],
+				url: "/reg?token=" + token,
 				data: JSON.stringify({name: $("#name").val(), email: "Boston@163.com"})
 			})
 				.done(function (msg) {
