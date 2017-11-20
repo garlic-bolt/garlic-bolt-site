@@ -10,22 +10,21 @@
 </head>
 
 <body>
-
 	<div th:fragment="common_menu(curPage)" class="header">
 		<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-			<a class="pure-menu-heading" href="javascript:void(0);">蒜苔</a>
+			<a class="pure-menu-heading" href="http://www.chanjetpay.com">蒜苔</a>
 			<ul class="pure-menu-list">
 				<li class="pure-menu-item" th:classappend="${curPage == 'index'} ? 'pure-menu-selected'">
-					<a href="javascript:void(0);" class="pure-menu-link">首页</a>
+					<a href="javascript:void(0);" class="pure-menu-link" th:href="@{/}">首页</a>
 				</li>
-				<li class="pure-menu-item" th:classappend="${curPage == 'demo'} ? 'pure-menu-selected'">
-					<a href="javascript:void(0);" class="pure-menu-link">演示</a>
+				<li class="pure-menu-item">
+					<a href="http://plat.chanjetpay.com" class="pure-menu-link" target="_blank">演示</a>
 				</li>
-				<li class="pure-menu-item" th:classappend="${curPage == 'enroll'} ? 'pure-menu-selected'">
-					<a href="javascript:void(0);" class="pure-menu-link">注册</a>
+				<li class="pure-menu-item" th:classappend="${curPage == 'register'} ? 'pure-menu-selected'">
+					<a href="javascript:void(0);" class="pure-menu-link" th:href="@{/register}">注册</a>
 				</li>
-				<li class="pure-menu-item" th:classappend="${curPage == 'about'} ? 'pure-menu-selected'">
-					<a href="javascript:void(0);" class="pure-menu-link">关于</a>
+				<li class="pure-menu-item" th:classappend="${curPage == 'instruction'} ? 'pure-menu-selected'">
+					<a href="javascript:void(0);" class="pure-menu-link" th:href="@{/instruction}">关于</a>
 				</li>
 			</ul>
 		</div>
@@ -33,11 +32,9 @@
 	
 	<div th:fragment="common_copy" class="footer l-box is-center">
 		<label>© 2015-2017 蒜苔网版权所有</label>
-		<a href="javascript:void(0);">联系方法</a>
-		<a href="javascript:void(0);">隐私政策</a>
+		<a href="javascript:void(0);" th:href="@{/instruction}">联系方法</a>
+		<a href="javascript:void(0);" th:href="@{/question/legal}">隐私政策</a>
 		<a href="mailto:bao.li.net@hotmail.com">意见反馈</a>
 	</div>
-
 </body>
-
 </html>

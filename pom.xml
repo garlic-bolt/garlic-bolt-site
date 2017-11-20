@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<name>garlic-bolt-site</name>
-	<description>蒜苔网</description>
+	<description>蒜苔网门户</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
 	</parent>
 
 	<properties>
+		<file.name>ROOT</file.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
@@ -27,6 +28,19 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- mail依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,6 +66,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${file.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
