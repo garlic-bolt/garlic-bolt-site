@@ -100,11 +100,10 @@ public class GarlicSiteController {
 		ModelAndView mav = new ModelAndView();
 
 		Context context = new Context();
-		String content = templateEngine.process(title + "_content",context);
+		String content = templateEngine.process("content/" + title + "_content",context);
 		mav.addObject("info",content);
 		mav.setViewName("question");
 
 		return mav;
 	}
-
 }
