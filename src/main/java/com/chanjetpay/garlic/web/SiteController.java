@@ -52,6 +52,14 @@ public class SiteController {
 		return "register";
 	}
 
+
+	@RequestMapping("/qrlogin")
+	public String qrlogin(){
+		return "qrlogin";
+	}
+
+
+
 	@Value("${spring.mail.username}")
 	private String from;
 
@@ -111,7 +119,7 @@ public class SiteController {
 
 		BlockDto resultDto = result.getValue();
 
-		String activeLink = "http://plat.chanjetpay.com/reg/invite/" + resultDto.getInviteCode();
+		String activeLink = "http://plat.coucang.com/reg/invite/" + resultDto.getInviteCode();
 		//发邮件
 		Context context = new Context();
 		context.setVariable("blockName", block.getWardenEmail());

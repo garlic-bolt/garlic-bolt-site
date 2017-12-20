@@ -3,13 +3,13 @@
 <body>
 	<div th:fragment="common_menu(curPage)" class="header">
 		<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-			<a class="pure-menu-heading" href="http://www.chanjetpay.com">蒜苔</a>
+			<a class="pure-menu-heading" href="http://www.coucang.com">蒜苔</a>
 			<ul class="pure-menu-list">
 				<li class="pure-menu-item" th:classappend="${curPage == 'index'} ? 'pure-menu-selected'">
 					<a href="javascript:void(0);" class="pure-menu-link" th:href="@{/}">首页</a>
 				</li>
 				<li class="pure-menu-item">
-					<a href="http://plat.chanjetpay.com" class="pure-menu-link" target="_blank">演示</a>
+					<a href="http://plat.coucang.com" class="pure-menu-link" target="_blank">演示</a>
 				</li>
 				<li class="pure-menu-item" th:classappend="${curPage == 'register'} ? 'pure-menu-selected'">
 					<a href="javascript:void(0);" class="pure-menu-link" th:href="@{/register}">注册</a>
