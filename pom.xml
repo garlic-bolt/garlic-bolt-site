@@ -20,6 +20,7 @@
 
 	<properties>
 		<file.name>ROOT</file.name>
+		<profiles.dir>src/profiles</profiles.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
@@ -92,6 +93,19 @@
 			<version>3.3.2</version>
 		</dependency>
 
+		<!-- spring feign dependency -->
+		<dependency>
+			<groupId>com.netflix.feign</groupId>
+			<artifactId>feign-core</artifactId>
+			<version>8.18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.netflix.feign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>8.18.0</version>
+		</dependency>
+
 		<!-- spring boot dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -129,7 +143,103 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources/static</directory>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources/templates</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/local</directory>
+					</resource>
+				</resources>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>com.chanjetpay.garlic</groupId>
+					<artifactId>garlic-bolt-api</artifactId>
+					<version>1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>openshift</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/openshift</directory>
+					</resource>
+				</resources>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>com.chanjetpay.garlic</groupId>
+					<artifactId>garlic-bolt-api</artifactId>
+					<version>1.0-SNAPSHOT</version>
+					<scope>system</scope>
+					<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/garlic-bolt-api-1.0-SNAPSHOT.jar</systemPath>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>betaa</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/betaa</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>betab</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/betab</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>proda</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/proda</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prodb</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/prodb</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
 
 
 </project>

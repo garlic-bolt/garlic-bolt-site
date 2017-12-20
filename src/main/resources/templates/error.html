@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>error</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+
+	<link rel="icon" href="../static/pure/garlic_128px.ico" type="image/x-icon" th:href="@{/garlic_128px.ico}">
+	<link rel="stylesheet" href="../static/pure/v1.0/pure-min.css" th:href="@{/pure/v1.0/pure-min.css}">
+	
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../static/pure/css/layouts/gallery-old-ie.css" th:href="@{/pure/css/layouts/gallery-old-ie.css}">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="../static/pure/css/layouts/gallery.css" th:href="@{/pure/css/layouts/gallery.css}">
+	<!--<![endif]-->
+	
+	<title th:text="#{title.application}"></title>
 </head>
 <body>
-<div>出错啦</div>
+	<div class="pure-u-1 form-box">
+		<div class="l-box">
+			<h2>系统错误</h2>
+			<p>
+				您的操作导致系统发生错误，请重新尝试一次，或联系<a href="mailto:bao.li.net@hotmail.com">管理员</a>。
+			</p>
+		</div>
+		<a href="http://www.chanjetpay.com">返回首页</a>
+	</div>
 </body>
 </html>

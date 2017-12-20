@@ -1,5 +1,10 @@
 package com.chanjetpay.garlic.web;
 
+import com.chanjetpay.garlic.api.BlockService;
+import com.chanjetpay.garlic.common.RegexValidate;
+import com.chanjetpay.garlic.dto.BlockDto;
+import com.chanjetpay.result.GenericResult;
+import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +14,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,12 +30,12 @@ import java.util.UUID;
  * Created by libaoa on 2017/11/8.
  */
 @Controller
-public class GarlicSiteController {
+public class SiteController {
+
+	private static final Logger logger  = LoggerFactory.getLogger(SiteController.class);
 
 	@Autowired
 	private TemplateEngine templateEngine;
-
-	private static final Logger logger = LoggerFactory.getLogger(GarlicSiteController.class);
 
 	@RequestMapping({"/",""})
 	public String index(){
@@ -54,6 +58,9 @@ public class GarlicSiteController {
 	@Autowired
 	private JavaMailSender sender;
 
+	@Autowired
+	private BlockService blockService;
+
 	/*发送邮件的方法*/
 	private void sendHtmlEmail(String to, String title, String content) throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
@@ -69,10 +76,42 @@ public class GarlicSiteController {
 	}
 
 	@RequestMapping(value = "/register", method= RequestMethod.POST)
-	public ModelAndView enroll(@ModelAttribute BlockEnrollDto block){
+	public ModelAndView enroll(@ModelAttribute BlockEnrollForm block) throws InvocationTargetException, IllegalAccessException {
+		logger.info("enroll param - {}",block );
+
 		ModelAndView mav = new ModelAndView("register");
+		//校验参数
+		StringBuilder sb = new StringBuilder();
+		if(RegexValidate.isEmail(block.getWardenEmail())){
+			sb.append("邮箱格式不正确\n\r");
+		}
+		if(RegexValidate.isMobile(block.getWardenPhone())){
+			sb.append("手机号格式不正确\n\r");
+		}
+		if(RegexValidate.isChinese(block.getBlockName())){
+			sb.append("社区名必须是中文\n\r");
+		}
+
+		if(sb.length() != 0){
+			mav.addObject("title", "信息填写错误");
+			mav.addObject("message", sb.toString());
+			return mav;
+		}
+
 		//信息登记
-		String activeLink = "http://plat.chanjetpay.com/reg/active/xxxdddyy";
+		BlockDto blockDto = new BlockDto();
+		BeanUtils.copyProperties(blockDto,block);
+		GenericResult<BlockDto> result = blockService.enroll(blockDto);
+
+		if(result.isError()){
+			mav.addObject("title", "社区注册失败:" + result.getCode());
+			mav.addObject("message", result.getDesc());
+			return mav;
+		}
+
+		BlockDto resultDto = result.getValue();
+
+		String activeLink = "http://plat.chanjetpay.com/reg/invite/" + resultDto.getInviteCode();
 		//发邮件
 		Context context = new Context();
 		context.setVariable("blockName", block.getWardenEmail());
@@ -83,8 +122,13 @@ public class GarlicSiteController {
 			sendHtmlEmail(block.getWardenEmail(), block.getBlockName() + "社区注册成功，请激活后试用", mailContent);
 		} catch (MessagingException e) {
 			logger.error("发送html邮件时发生异常！", e);
+
+			mav.addObject("title", "社区注册失败");
+			mav.addObject("message", "发送html邮件时发生异常,请于系统管理员联系");
+			return mav;
 		}
 
+		//激活提示
 		context.setVariable("mailHost", "http://mail.163.com");
 		context.setVariable("mailAddr", block.getWardenEmail());
 		String activeContent = templateEngine.process("preset/reg_active", context);

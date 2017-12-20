@@ -20,9 +20,6 @@
 	<link rel="stylesheet" href="../static/pure/v1.0/pure-min.css"
 	      th:href="@{/pure/v1.0/pure-min.css}" />
 	
-	<link rel="stylesheet" href="../static/pure/css/modal.css"
-	      th:href="@{/pure/css/modal.css}">
-	
 	<!--[if lte IE 8]>
 	<link rel="stylesheet" href="../static/pure/v1.0/grids-responsive-old-ie-min.css"
 	      th:href="@{/pure/v1.0/grids-responsive-old-ie-min.css}"/>
@@ -65,7 +62,7 @@
 	<div class="content">
 		<div class="content-body pricing-tables pure-g">
 			<div class="pure-u-1 pure-u-md-1-2">
-				<img width="300" alt="pic" class="pure-img-responsive" src="../static/team.jpg" th:attr="src=@{/team.jpg}">
+				<img width="300" alt="pic" class="pure-img-responsive" src="../static/smartlife.png" th:attr="src=@{/smartlife.png}">
 			</div>
 			
 			<div class="pure-u-1 pure-u-md-1-2">
@@ -111,8 +108,39 @@
 					<div class="pure-u-1"><a href="javascript:void(0);" th:href="@{/question/security}">支付模块安全说明</a></div>
 				</div>
 			</div>
+			
+			<div class="pure-g left-align">
+				<div class="pure-u-1-1">
+					<h2 class="content-subhead">2017.12.18 智慧生活平台 version 1.1</h2>
+					<p>
+						技术框架基本实现，门户网站采用purecss，平台核心采用springboot，企业版管理后台采用semantic ui，客户版后台采用frozen UI，数据库为mysql，通过feign进行服务调用。<br/>
+					</p>
+					<p>
+						项目工程如下：<br>
+						+---garlic-bolt-api<br>
+						+---garlic-bolt-core<br>
+						+---garlic-bolt-platform<br>
+						+---garlic-bolt-site<br>
+						+---garlic-bolt-web<br>
+					</p>
+					<p>
+						明确产品定位：社区、商户、交易、用户、会员、营销、消费、聚合支付、社交、风控、金融O2O等功能集。
+					</p>
+				</div>
+				<div class="pure-u-1-1">
+					<h2 class="content-subhead">2017.11.15 智慧生活平台 version 1.0</h2>
+					<p>
+						初始化1.0版本，开发微信公众号服务端，蒜苔网主题功能框架，智慧生活云平台核心系统，企业版管理后台，客户版后台。<br/>
+					</p>
+					<p>
+						注：所有版本只是demo，仅有基本的数据通信功能，无法投产实际使用。
+					</p>
+				</div>
+			</div>
 		
 		</div> <!-- end pricing-tables -->
+		
+
 	</div>
 	
 	<style>

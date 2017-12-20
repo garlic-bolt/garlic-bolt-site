@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A layout example that shows off a responsive photo gallery.">
+	<title>Photo Gallery &ndash; Layout Examples &ndash; Pure</title>
+	
+	<link rel="stylesheet" href="../static/pure/v1.0/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+	
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../static/pure/v1.0/grids-responsive-old-ie-min.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="../static/pure/v1.0/grids-responsive-min.css">
+	<!--<![endif]-->
+	
+	
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../static/pure/css/layouts/gallery-old-ie.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="../static/pure/css/layouts/gallery.css">
+	<!--<![endif]-->
+</head>
+<body>
+
+		<div class="pure-u-1 form-box">
+			<div class="l-box">
+				<h2>使用手机扫描二维码登录客户版后台</h2>
+				<img width="300" alt="微信公众号" class="pure-img-responsive" src="../static/client_qr_login.png" th:attr="src=@{/client_qr_login.png}" />
+			</div>
+		</div>
+		
+		<div class="pure-u-1">
+			<div class="l-box">
+				<h2>客户版分为操作员模式和会员模式</h2>
+				
+				<p>
+					操作员模式是为企业版员工提供业务支持后台，根据入网业务展示相应的功能菜单。
+				</p>
+				
+				<p>
+					会员模式是为使用企业服务的个人或法人用户提供后台页面，包括积分，卡包，金融o2o等功能。
+				</p>
+			</div>
+		</div>
+
+</div>
+
+
+</body>
+</html>

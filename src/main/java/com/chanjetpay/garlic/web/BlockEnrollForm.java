@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by libaoa on 2017/11/9.
  */
-public class BlockEnrollDto implements Serializable{
+public class BlockEnrollForm {
 	private String blockName;
 	private String wardenEmail;
 	private String wardenPhone;
