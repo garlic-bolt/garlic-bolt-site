@@ -68,13 +68,13 @@
             <form id="form-register" class="pure-form pure-form-stacked" method="post" th:action="@{/register}">
                 <fieldset>
                     <label for="name">社区名称</label>
-                    <input id="name" type="text" name="blockName" placeholder="请输入社区名称">
+                    <input id="name" type="text" name="blockName" placeholder="请输入社区名称" th:value="${block.blockName}">
 
                     <label for="email">管理员邮箱</label>
-                    <input id="email" type="email" name="wardenEmail" placeholder="请输入邮箱地址">
+                    <input id="email" type="email" name="wardenEmail" placeholder="请输入邮箱地址" th:value="${block.wardenEmail}">
 										
                     <label for="phone">管理员手机号</label>
-                    <input id="phone" type="tel" name="wardenPhone" placeholder="请输入手机号">
+                    <input id="phone" type="tel" name="wardenPhone" placeholder="请输入手机号"  th:value="${block.wardenPhone}">
 	                
 	                  <a id="a-submit" class="pure-button" href="javascript:void(0);">注册</a>
                 </fieldset>

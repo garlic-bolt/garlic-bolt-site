@@ -3,10 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
+	<meta name="copyright" content="coucang.com"
+	      th:content="#{meta.copyright}">
+	<meta name="keywords" content="蒜苔，聚餐，美食，点菜，餐饮服务，扫码点餐，扫码预约，扫码排队，扫码结账"
+	      th:content="#{meta.keywords}">
+	<meta name="description" content="专注于移动web的智能餐饮服务平台"
+	      th:content="#{meta.description}" >
+	<meta name="author" content="bao.li.net@hotmail.com"
+	      th:content="#{meta.author}" >
 
 	<link rel="icon" href="../static/pure/garlic_128px.ico" type="image/x-icon" th:href="@{/garlic_128px.ico}">
 	<link rel="stylesheet" href="../static/pure/v1.0/pure-min.css" th:href="@{/pure/v1.0/pure-min.css}">
+	
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../static/pure/v1.0/grids-responsive-old-ie-min.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	<link rel="stylesheet" href="../static/pure/v1.0/grids-responsive-min.css">
+	<!--<![endif]-->
 	
 	<!--[if lte IE 8]>
 	<link rel="stylesheet" href="../static/pure/css/layouts/gallery-old-ie.css" th:href="@{/pure/css/layouts/gallery-old-ie.css}">
@@ -25,7 +39,7 @@
 				您的操作导致系统发生错误，请重新尝试一次，或联系<a href="mailto:bao.li.net@hotmail.com">管理员</a>。
 			</p>
 		</div>
-		<a href="javascript:history.go(-1)">返回首页</a>
+		<a href="javascript:history.go(-1)">返回</a>
 	</div>
 </body>
 </html>

@@ -125,7 +125,7 @@ public class RegexValidate {
 	}
 
 	public static void main(String[] args) {
-		String username = "张3";
-		System.out.println(RegexValidate.isChinese(username));
+		String username = "123";
+		System.out.println(RegexValidate.isEmail(username));
 	}
 }

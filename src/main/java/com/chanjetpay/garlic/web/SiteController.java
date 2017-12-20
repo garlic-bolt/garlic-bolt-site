@@ -47,9 +47,75 @@ public class SiteController {
 		return "instruction";
 	}
 
-	@RequestMapping("/register")
-	public String register(){
-		return "register";
+	@RequestMapping(value = "/register", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView register(@ModelAttribute BlockEnrollForm block, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
+		logger.info("enroll param - {}",block );
+
+		ModelAndView mav = new ModelAndView("register");
+		mav.addObject("block",block);
+
+		if(request.getMethod().equals("GET")) {
+			return mav;
+		}
+
+		//校验参数
+		StringBuilder sb = new StringBuilder();
+		if(!RegexValidate.isEmail(block.getWardenEmail())){
+			sb.append("邮箱格式不正确<br>");
+		}
+		if(!RegexValidate.isMobile(block.getWardenPhone())){
+			sb.append("手机号格式不正确<br>");
+		}
+		if(!RegexValidate.isChinese(block.getBlockName())){
+			sb.append("社区名必须是中文<br>");
+		}
+
+		if(sb.length() != 0){
+			mav.addObject("title", "信息填写错误");
+			mav.addObject("message", sb.toString());
+			return mav;
+		}
+
+		//信息登记
+		BlockDto blockDto = new BlockDto();
+		BeanUtils.copyProperties(blockDto,block);
+		GenericResult<BlockDto> result = blockService.enroll(blockDto);
+
+		if(result.isError()){
+			mav.addObject("title", "社区注册失败:" + result.getCode());
+			mav.addObject("message", result.getDesc());
+			return mav;
+		}
+
+		String inviteCode = result.getValue().getInviteCode();
+
+		String activeLink = "http://plat.coucang.com/reg/invite/" + inviteCode;
+		//发邮件
+		Context context = new Context();
+		context.setVariable("blockName", block.getWardenEmail());
+		context.setVariable("activeLink", activeLink);
+		context.setVariable("inviteCode",inviteCode);
+		String mailContent = templateEngine.process("preset/reg_mail", context);
+
+		try {
+			sendHtmlEmail(block.getWardenEmail(), block.getBlockName() + "社区注册成功，请激活后试用", mailContent);
+		} catch (MessagingException e) {
+			logger.error("发送html邮件时发生异常！", e);
+
+			mav.addObject("title", "社区注册失败");
+			mav.addObject("message", "发送html邮件时发生异常,请于系统管理员联系");
+			return mav;
+		}
+
+		//激活提示
+		context.setVariable("mailHost", "http://mail.163.com");
+		context.setVariable("mailAddr", block.getWardenEmail());
+		String activeContent = templateEngine.process("preset/reg_active", context);
+
+		mav.addObject("title", "注册邮件发送成功");
+		mav.addObject("message", activeContent);
+
+		return mav;
 	}
 
 
@@ -80,71 +146,7 @@ public class SiteController {
 		helper.setSubject(title);
 		helper.setText(content, true);
 
-		//sender.send(message);
-	}
-
-	@RequestMapping(value = "/register", method= RequestMethod.POST)
-	public ModelAndView enroll(@ModelAttribute BlockEnrollForm block) throws InvocationTargetException, IllegalAccessException {
-		logger.info("enroll param - {}",block );
-
-		ModelAndView mav = new ModelAndView("register");
-		//校验参数
-		StringBuilder sb = new StringBuilder();
-		if(RegexValidate.isEmail(block.getWardenEmail())){
-			sb.append("邮箱格式不正确\n\r");
-		}
-		if(RegexValidate.isMobile(block.getWardenPhone())){
-			sb.append("手机号格式不正确\n\r");
-		}
-		if(RegexValidate.isChinese(block.getBlockName())){
-			sb.append("社区名必须是中文\n\r");
-		}
-
-		if(sb.length() != 0){
-			mav.addObject("title", "信息填写错误");
-			mav.addObject("message", sb.toString());
-			return mav;
-		}
-
-		//信息登记
-		BlockDto blockDto = new BlockDto();
-		BeanUtils.copyProperties(blockDto,block);
-		GenericResult<BlockDto> result = blockService.enroll(blockDto);
-
-		if(result.isError()){
-			mav.addObject("title", "社区注册失败:" + result.getCode());
-			mav.addObject("message", result.getDesc());
-			return mav;
-		}
-
-		BlockDto resultDto = result.getValue();
-
-		String activeLink = "http://plat.coucang.com/reg/invite/" + resultDto.getInviteCode();
-		//发邮件
-		Context context = new Context();
-		context.setVariable("blockName", block.getWardenEmail());
-		context.setVariable("activeLink", activeLink);
-		String mailContent = templateEngine.process("preset/reg_mail", context);
-
-		try {
-			sendHtmlEmail(block.getWardenEmail(), block.getBlockName() + "社区注册成功，请激活后试用", mailContent);
-		} catch (MessagingException e) {
-			logger.error("发送html邮件时发生异常！", e);
-
-			mav.addObject("title", "社区注册失败");
-			mav.addObject("message", "发送html邮件时发生异常,请于系统管理员联系");
-			return mav;
-		}
-
-		//激活提示
-		context.setVariable("mailHost", "http://mail.163.com");
-		context.setVariable("mailAddr", block.getWardenEmail());
-		String activeContent = templateEngine.process("preset/reg_active", context);
-
-		mav.addObject("title", "注册邮件发送成功");
-		mav.addObject("message", activeContent);
-
-		return mav;
+		sender.send(message);
 	}
 
 	@RequestMapping("/question/{title}")
