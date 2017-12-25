@@ -1,6 +1,7 @@
 package com.chanjetpay.garlic.web;
 
 import com.chanjetpay.garlic.api.BlockService;
+import com.chanjetpay.garlic.common.BlockEnrollForm;
 import com.chanjetpay.garlic.common.RegexValidate;
 import com.chanjetpay.garlic.dto.BlockDto;
 import com.chanjetpay.result.GenericResult;
@@ -9,11 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
@@ -23,8 +22,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by libaoa on 2017/11/8.
@@ -36,6 +33,9 @@ public class SiteController {
 
 	@Autowired
 	private TemplateEngine templateEngine;
+
+	@Value("${spring.mail.username}")
+	private String from;
 
 	@RequestMapping({"/",""})
 	public String index(){
@@ -123,11 +123,6 @@ public class SiteController {
 	public String qrlogin(){
 		return "qrlogin";
 	}
-
-
-
-	@Value("${spring.mail.username}")
-	private String from;
 
 	@Autowired
 	private JavaMailSender sender;

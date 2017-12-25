@@ -1,4 +1,4 @@
-package com.chanjetpay.garlic.web;
+package com.chanjetpay.garlic.common;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
