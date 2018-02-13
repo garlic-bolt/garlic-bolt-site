@@ -65,20 +65,20 @@
 	  
     <div class="content-body pure-g">
         <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-            <form id="form-register" class="pure-form pure-form-stacked" method="post" th:action="@{/register}">
-                <fieldset>
-                    <label for="name">社区名称</label>
-                    <input id="name" type="text" name="blockName" placeholder="请输入社区名称" th:value="${block.blockName}">
-
-                    <label for="email">管理员邮箱</label>
-                    <input id="email" type="email" name="wardenEmail" placeholder="请输入邮箱地址" th:value="${block.wardenEmail}">
-										
-                    <label for="phone">管理员手机号</label>
-                    <input id="phone" type="tel" name="wardenPhone" placeholder="请输入手机号"  th:value="${block.wardenPhone}">
-	                
-	                  <a id="a-submit" class="pure-button" href="javascript:void(0);">注册</a>
-                </fieldset>
-            </form>
+	        <form id="form-register" class="pure-form pure-form-stacked" method="post" th:action="@{/register}">
+		        <fieldset>
+			        <label for="name">社区名称</label>
+			        <input id="name" type="text" name="blockName" placeholder="请输入社区名称" th:value="${block.blockName}">
+			
+			        <label for="email">管理员邮箱</label>
+			        <input id="email" type="email" name="wardenEmail" placeholder="请输入邮箱地址" th:value="${block.wardenEmail}">
+			
+			        <label for="phone">管理员手机号</label>
+			        <input id="phone" type="tel" name="wardenPhone" placeholder="请输入手机号"  th:value="${block.wardenPhone}">
+			
+			        <input id="btnSubmit" type="submit" class="pure-button" value="提交" />
+		        </fieldset>
+	        </form>
         </div>
 
         <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
@@ -158,8 +158,25 @@
 	</div>
 	
 	<script type="text/javascript" th:inline="javascript">
+	  $(document).ready(function () {
+		  $("#btnSubmit").click(function (event) {
+			  $("#form-register input").each(function () {
+				  if ($(this).val() == "") {
+					  $(this).focus();
+					  //stop submit the form, we will post it manually.
+					  event.preventDefault();
+					  return false;
+				  }
+			  });
+		  });
+	  });
+	
+	</script>
+	
+	
+	<script type="text/javascript" th:inline="javascript">
 	  var title = [[${title}]];
-	  
+
 	  $(document).ready(function () {
 		  if (title != null && title.length > 0) {
 			  var e = jQuery.Event("click");
@@ -167,23 +184,7 @@
 			  $('#modal-one').trigger(e);
 		  }
 	  });
-
-	  $("#a-submit").click(function () {
-		  var validate = true;
-		  $("#form-register input").each(function () {
-			  if ($(this).val() == "") {
-				  $(this).focus();
-				  validate = false;
-				  return false;
-			  }
-		  });
-
-		  if (validate == true) {
-			  $("#form-register").submit();
-		  }
-	  });
 	
 	</script>
-
 </body>
 </html>
