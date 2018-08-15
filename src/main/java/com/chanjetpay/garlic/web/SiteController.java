@@ -87,9 +87,10 @@ public class SiteController {
 			return mav;
 		}
 
-		String inviteCode = result.getValue().getInviteCode();
+		String blockCode = result.getData().getBlockCode();
+		String inviteCode = result.getData().getInviteCode();
 
-		String activeLink = "http://plat.coucang.com/reg/invite/" + inviteCode;
+		String activeLink = "http://plat.coucang.com/reg/" + blockCode + "/invite/" + inviteCode;
 		//发邮件
 		Context context = new Context();
 		context.setVariable("blockName", block.getWardenEmail());
@@ -98,7 +99,8 @@ public class SiteController {
 		String mailContent = templateEngine.process("preset/reg_mail", context);
 
 		try {
-			sendHtmlEmail(block.getWardenEmail(), block.getBlockName() + "社区注册成功，请激活后试用", mailContent);
+			String title = block.getBlockName() + "社区注册成功，请激活后使用" + blockCode + "01账号登录";
+			sendHtmlEmail(block.getWardenEmail(), title, mailContent);
 		} catch (MessagingException e) {
 			logger.error("发送html邮件时发生异常！", e);
 

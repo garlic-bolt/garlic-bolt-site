@@ -65,7 +65,7 @@
 	  
     <div class="content-body pure-g">
         <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-	        <form id="form-register" class="pure-form pure-form-stacked" method="post" th:action="@{/register}">
+	        <form id="form-register" class="pure-form pure-form-stacked" method="post" autocomplete="off" th:action="@{/register}">
 		        <fieldset>
 			        <label for="name">社区名称</label>
 			        <input id="name" type="text" name="blockName" placeholder="请输入社区名称" th:value="${block.blockName}">

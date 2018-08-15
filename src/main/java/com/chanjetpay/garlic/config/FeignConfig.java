@@ -1,7 +1,6 @@
 package com.chanjetpay.garlic.config;
 
 import com.chanjetpay.garlic.api.BlockService;
-import com.chanjetpay.garlic.api.MerchantService;
 import feign.*;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
