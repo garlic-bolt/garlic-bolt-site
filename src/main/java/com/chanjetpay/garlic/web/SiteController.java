@@ -5,6 +5,7 @@ import com.chanjetpay.garlic.common.BlockEnrollForm;
 import com.chanjetpay.garlic.common.RegexValidate;
 import com.chanjetpay.garlic.dto.BlockDto;
 import com.chanjetpay.result.GenericResult;
+import com.chanjetpay.result.Result;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +82,7 @@ public class SiteController {
 		BeanUtils.copyProperties(blockDto,block);
 		GenericResult<BlockDto> result = blockService.enroll(blockDto);
 
-		if(result.isError()){
+		if(!result.getCode().equals(Result.SUCCESS)){
 			mav.addObject("title", "社区注册失败:" + result.getCode());
 			mav.addObject("message", result.getDesc());
 			return mav;
